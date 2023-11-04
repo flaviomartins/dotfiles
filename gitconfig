@@ -1,0 +1,11 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Flavio Martins
+	email = flavio.f.martins@tecnico.ulisboa.pt
+[init]
+	defaultBranch = main
+[diff "sqlite3"]
+        binary = true
+        textconv = "<<<.dump sqlite3"
+[sequence]
+	editor = interactive-rebase-tool
