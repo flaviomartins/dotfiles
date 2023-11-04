@@ -23,15 +23,14 @@ fi
 
 source ${ZDOTDIR:-${HOME}}/.zcomet/bin/zcomet.zsh
 
+zcomet load romkatv/powerlevel10k
 zcomet load ohmyzsh
-zcomet snippet OMZ::plugins/git/git.plugin.zsh
-zcomet snippet OMZ::plugins/docker-compose/docker-compose.plugin.zsh
 zcomet load zdharma-continuum/history-search-multi-word
 
 # It is good to load these popular plugins last, and in this order:
 zcomet load zsh-users/zsh-syntax-highlighting
-zcomet load zsh-users/zsh-completions
 zcomet load zsh-users/zsh-autosuggestions
+zcomet load zsh-users/zsh-completions
 
 # Powerlevel10k
 source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
