@@ -1,4 +1,4 @@
-
+# brew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # jenv
@@ -12,4 +12,3 @@ eval "$(pyenv init -)"
 
 # Added by Toolbox App
 export PATH="$PATH:/Users/flaviomartins/Library/Application Support/JetBrains/Toolbox/scripts"
-
