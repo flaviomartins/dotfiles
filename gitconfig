@@ -8,12 +8,6 @@
 	user = flaviomartins
 [http]
 	postBuffer = 524288000
-[diff]
-	colorMoved = default
-	renames = true
-[delta]
-	side-by-side = false
-	line-numbers = true
 [core]
 	# Use custom `.gitignore` and `.gitattributes`
 	excludesfile = ~/.gitignore
@@ -36,22 +30,35 @@
 	# https://git-scm.com/docs/git-update-index#_untracked_cache
 	untrackedCache = true
 
+	# Use nvim as the default editor
+	editor = nvim
+
 	# Use delta as the default pager
 	pager = delta
+[delta]
+	features = decorations
+	light = false
+	line-numbers = true
+	side-by-side = false
+	whitespace-error-style = 22 reverse
 [log]
-	date = iso-local
+	date = auto:human
 [color]
 	ui = true
 [interactive]
 	diffFilter = delta --color-only --features=interactive
 [sequence]
 	editor = interactive-rebase-tool
+[diff]
+	colorMoved = default
+	renames = true
 [diff "sqlite3"]
 	binary = true
 	textconv = "<<<.dump sqlite3"
 [init]
 	defaultBranch = main
 [push]
+	default = simple
 	autoSetupRemote = true
 	followTags = true
 [pull]
