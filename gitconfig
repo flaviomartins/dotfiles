@@ -62,8 +62,8 @@
 	defaultBranch = main
 [push]
 	default = simple
-	autoSetupRemote = true
 	followTags = true
+	autoSetupRemote = true
 [pull]
 	ff = only
 [commit]
