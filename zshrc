@@ -23,7 +23,6 @@ fi
 
 source ${ZDOTDIR:-${HOME}}/.zcomet/bin/zcomet.zsh
 
-zcomet load romkatv/powerlevel10k
 zcomet load ohmyzsh
 zcomet load zdharma-continuum/history-search-multi-word
 
@@ -33,7 +32,7 @@ zcomet load zsh-users/zsh-autosuggestions
 zcomet load zsh-users/zsh-completions
 
 # Powerlevel10k
-source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+zcomet load romkatv/powerlevel10k
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
