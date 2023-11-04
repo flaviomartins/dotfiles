@@ -5,87 +5,59 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+# You may need to manually set your language environment
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="powerlevel10k/powerlevel10k"
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='vim'
+fi
+
+# Clone zcomet if necessary
+if [[ ! -f ${ZDOTDIR:-${HOME}}/.zcomet/bin/zcomet.zsh ]]; then
+  command git clone https://github.com/agkozak/zcomet.git ${ZDOTDIR:-${HOME}}/.zcomet/bin
+fi
+
+source ${ZDOTDIR:-${HOME}}/.zcomet/bin/zcomet.zsh
+
+zcomet load ohmyzsh
+zcomet snippet OMZ::plugins/git/git.plugin.zsh
+zcomet snippet OMZ::plugins/docker-compose/docker-compose.plugin.zsh
+zcomet load zdharma-continuum/history-search-multi-word
+
+# It is good to load these popular plugins last, and in this order:
+zcomet load zsh-users/zsh-syntax-highlighting
+zcomet load zsh-users/zsh-completions
+zcomet load zsh-users/zsh-autosuggestions
+
+# Powerlevel10k
 source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 
-# Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Uncomment the following line to change how often to auto-update (in days).
-zstyle ':omz:update' frequency 13
+# Aliases
+alias lg='lazygit'
+alias ls='ls -G'
+alias ll='ls -lG'
+alias lsa='ls -lahG'
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-DISABLE_UNTRACKED_FILES_DIRTY="true"
+# History settings
+export HISTFILE=$HOME/.zsh_history
+export HISTFILESIZE=50000
+export HISTSIZE=50000
+export HISTTIMEFORMAT="[%F %T] "
+setopt extended_history
+setopt share_history
+setopt hist_find_no_dups
+setopt hist_reduce_blanks
 
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-HIST_STAMPS="yyyy-mm-dd"
+# PATH
 
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(
-    aliases
-    colored-man-pages
-    colorize
-    cp
-    brew
-    direnv
-    docker
-    docker-compose
-    dotenv
-    fd
-    gh
-    git
-    git-lfs
-    git-prompt
-    github
-    gitignore
-    heroku
-    history
-    jenv
-    macos
-    mosh
-    nmap
-    pip
-    pipenv
-    poetry
-    pre-commit
-    pyenv
-    python
-    redis-cli
-    ripgrep
-    rsync
-    ssh-agent
-    sublime
-    thefuck
-    vscode
-    wakeonlan
-    z
-)
-
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# GNU
+# gnubin
 PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
 PATH="/opt/homebrew/opt/gawk/libexec/gnubin:$PATH"
@@ -123,29 +95,3 @@ PATH="/opt/homebrew/Cellar/openssh/9.5p1/bin/:$PATH"
 PATH="/opt/homebrew/opt/ssh-copy-id/bin:$PATH"
 
 export PATH
-
-# You may need to manually set your language environment
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='vim'
-fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
