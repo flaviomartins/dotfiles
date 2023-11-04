@@ -6,11 +6,20 @@
 	path = .gitconfig-personal
 [github]
 	user = flaviomartins
-[core]
-	pager = delta
+[http]
+	postBuffer = 524288000
+[diff]
+	colorMoved = default
+	renames = true
 [delta]
 	side-by-side = false
 	line-numbers = true
+[core]
+	pager = delta
+[log]
+	date = iso-local
+[color]
+	ui = true
 [interactive]
 	diffFilter = delta --color-only
 [sequence]
