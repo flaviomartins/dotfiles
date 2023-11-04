@@ -51,7 +51,8 @@
 	textconv = "<<<.dump sqlite3"
 [init]
 	defaultBranch = main
-[pull]
-	ff = only
 [push]
 	autoSetupRemote = true
+	followTags = true
+[pull]
+	ff = only
