@@ -9,6 +9,9 @@
 [http]
 	postBuffer = 524288000
 [core]
+	# Ensure that no CRLF line endings are ever written to the repository
+	autocrlf = input
+
 	# Use custom `.gitignore` and `.gitattributes`
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
@@ -63,3 +66,5 @@
 	followTags = true
 [pull]
 	ff = only
+[commit]
+	template = ~/.gitmessage
