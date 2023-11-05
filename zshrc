@@ -51,14 +51,20 @@ fi
 source ~/.aliases.zsh
 
 # History settings
+setopt extended_history
+setopt inc_append_history
+setopt share_history
+setopt hist_ignore_dups
+setopt hist_ignore_all_dups
+setopt hist_expire_dups_first
+setopt hist_save_no_dups
+setopt hist_ignore_space
+setopt hist_verify
+setopt interactivecomments
 export HISTFILE=$HOME/.zsh_history
 export HISTFILESIZE=50000
 export HISTSIZE=50000
 export HISTTIMEFORMAT="[%F %T] "
-setopt extended_history
-setopt share_history
-setopt hist_find_no_dups
-setopt hist_reduce_blanks
 
 # PATH
 
