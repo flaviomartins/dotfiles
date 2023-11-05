@@ -8,6 +8,8 @@
 	user = flaviomartins
 [http]
 	postBuffer = 524288000
+[credential]
+	helper = osxkeychain
 [core]
 	# Ensure that no CRLF line endings are ever written to the repository
 	autocrlf = input
