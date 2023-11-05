@@ -63,10 +63,11 @@
 [init]
 	defaultBranch = main
 [push]
-	default = simple
+	default = current
 	followTags = true
 	autoSetupRemote = true
 [pull]
 	ff = only
+	rebase = true
 [commit]
 	template = ~/.gitmessage
