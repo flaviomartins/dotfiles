@@ -9,6 +9,7 @@ eval "$(jenv init -)"
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 # Added by Toolbox App
 export PATH="$PATH:/Users/flaviomartins/Library/Application Support/JetBrains/Toolbox/scripts"
