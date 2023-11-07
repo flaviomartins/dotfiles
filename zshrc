@@ -102,6 +102,9 @@ PATH="/opt/homebrew/Cellar/nano/7.2/bin:$PATH"
 # openssh
 PATH="/opt/homebrew/Cellar/openssh/9.5p1/bin/:$PATH"
 
+# postgresql
+PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+
 # ssh-copy-id
 PATH="/opt/homebrew/opt/ssh-copy-id/bin:$PATH"
 
