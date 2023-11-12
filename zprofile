@@ -2,7 +2,8 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # jenv
-export PATH="$HOME/.jenv/bin:$PATH"
+export JENV_ROOT="$HOME/.jenv"
+[[ -d $JENV_ROOT/bin ]] && export PATH="$JENV_ROOT/bin:$PATH"
 eval "$(jenv init -)"
 
 # pyenv
