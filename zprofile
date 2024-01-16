@@ -14,3 +14,6 @@ eval "$(pyenv virtualenv-init -)"
 
 # Added by Toolbox App
 export PATH="$PATH:/Users/flaviomartins/Library/Application Support/JetBrains/Toolbox/scripts"
+
+# Created by `pipx`
+export PATH="$PATH:/Users/flaviomartins/.local/bin"

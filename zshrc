@@ -109,3 +109,6 @@ PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 PATH="/opt/homebrew/opt/ssh-copy-id/bin:$PATH"
 
 export PATH
+
+# Created by `pipx`
+export PATH="$PATH:/Users/flaviomartins/.local/bin"
