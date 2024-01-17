@@ -105,6 +105,9 @@ PATH="/opt/homebrew/Cellar/openssh/9.6p1/bin:$PATH"
 # postgresql
 PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 
+# sqlite
+PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
+
 # ssh-copy-id
 PATH="/opt/homebrew/opt/ssh-copy-id/bin:$PATH"
 
