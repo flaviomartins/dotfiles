@@ -111,15 +111,13 @@ PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
 # ssh-copy-id
 PATH="/opt/homebrew/opt/ssh-copy-id/bin:$PATH"
 
-export PATH
-
-# Created by `pipx`
-export PATH="$PATH:/Users/flaviomartins/.local/bin"
+# local bin
+export PATH="$PATH:$HOME/.local/bin"
 
 # >>> mamba initialize >>>
 # !! Contents within this block are managed by 'mamba init' !!
 export MAMBA_EXE='/opt/homebrew/bin/micromamba';
-export MAMBA_ROOT_PREFIX='/Users/flaviomartins/micromamba';
+export MAMBA_ROOT_PREFIX='$HOME/micromamba';
 __mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__mamba_setup"
