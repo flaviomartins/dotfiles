@@ -15,6 +15,7 @@ source ${ZDOTDIR:-${HOME}}/.zcomet/bin/zcomet.zsh
 
 # Load some plugins
 zcomet load agkozak/zsh-z
+zcomet load atuinsh/atuin
 zcomet load ohmyzsh
 
 ZSH_AUTOSUGGEST_MANUAL_REBIND=1
