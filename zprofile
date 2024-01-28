@@ -1,6 +1,9 @@
 # brew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+# mactex
+eval "$(/usr/libexec/path_helper)"
+
 # jenv
 export JENV_ROOT="$HOME/.jenv"
 [[ -d $JENV_ROOT/bin ]] && export PATH="$JENV_ROOT/bin:$PATH"
