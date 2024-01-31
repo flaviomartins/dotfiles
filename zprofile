@@ -1,9 +1,6 @@
 # brew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# local bin
-export PATH="$PATH:$HOME/.local/bin"
-
 # mactex
 eval "$(/usr/libexec/path_helper)"
 
