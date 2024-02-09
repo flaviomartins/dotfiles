@@ -4,6 +4,10 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # mactex
 eval "$(/usr/libexec/path_helper)"
 
+# go
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
+
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
