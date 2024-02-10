@@ -113,7 +113,7 @@ PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
 PATH="/opt/homebrew/opt/ssh-copy-id/bin:$PATH"
 
 # local bin
-export PATH="$PATH:$HOME/.local/bin"
+export PATH="$HOME/.local/bin:$PATH"
 
 # >>> mamba initialize >>>
 # !! Contents within this block are managed by 'mamba init' !!
