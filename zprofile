@@ -1,9 +1,6 @@
 # brew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# mactex
-eval "$(/usr/libexec/path_helper)"
-
 # go
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
