@@ -112,9 +112,6 @@ PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
 # ssh-copy-id
 PATH="/opt/homebrew/opt/ssh-copy-id/bin:$PATH"
 
-# local bin
-export PATH="$HOME/.local/bin:$PATH"
-
 # >>> mamba initialize >>>
 # !! Contents within this block are managed by 'mamba init' !!
 export MAMBA_EXE='/opt/homebrew/bin/micromamba';
@@ -127,3 +124,6 @@ else
 fi
 unset __mamba_setup
 # <<< mamba initialize <<<
+
+# local bin
+export PATH="$HOME/.local/bin:$PATH"
