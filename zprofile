@@ -3,7 +3,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # go
 export GOPATH="$HOME/go"
-export PATH="$GOPATH/bin:$PATH"
+[[ -d $GOPATH/bin ]] && export PATH="$GOPATH/bin:$PATH"
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
@@ -16,7 +16,7 @@ eval "$(rbenv init - zsh)"
 
 # sdkman
 export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
 
 # Added by Toolbox App
 export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
