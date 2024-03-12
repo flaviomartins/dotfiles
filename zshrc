@@ -101,7 +101,7 @@ PATH="/opt/homebrew/Cellar/less/643/bin:$PATH"
 PATH="/opt/homebrew/Cellar/nano/7.2/bin:$PATH"
 
 # openssh
-PATH="/opt/homebrew/Cellar/openssh/9.6p1/bin:$PATH"
+PATH="/opt/homebrew/Cellar/openssh/9.7p1/bin:$PATH"
 
 # postgresql
 PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
