@@ -46,6 +46,12 @@
 	line-numbers = true
 	side-by-side = false
 	whitespace-error-style = 22 reverse
+[difftool]
+    prompt = false
+[difftool "difftastic"]
+    cmd = difft "$LOCAL" "$REMOTE"
+[pager]
+    difftool = true
 [log]
 	date = auto:human
 [color]
@@ -58,6 +64,7 @@
 	colorMoved = default
 	colorMovedWS = ignore-space-change
 	renames = true
+	tool = difftastic
 [diff "sqlite3"]
 	binary = true
 	textconv = "<<<.dump sqlite3"
@@ -72,3 +79,5 @@
 	rebase = true
 [commit]
 	template = ~/.gitmessage
+[alias]
+    dft = difftool
