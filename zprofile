@@ -6,6 +6,8 @@ export GOPATH="$HOME/go"
 [[ -d $GOPATH/bin ]] && export PATH="$GOPATH/bin:$PATH"
 
 # pyenv
+export PYTHON_CFLAGS="-march=native -mtune=native"
+export PYTHON_CONFIGURE_OPTS="--enable-optimizations --with-lto"
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
