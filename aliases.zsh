@@ -6,3 +6,6 @@ alias lsa='eza -lahG'
 
 alias qget='NQDIR=~/Downloads nq aria2c -d ~/Downloads'
 alias qwait='NQDIR=~/Downloads fq -q'
+
+# Honeyman’s “idiom” command:
+alias honey='sort | uniq -c | sort -rn'
