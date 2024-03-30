@@ -5,6 +5,10 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 export GOPATH="$HOME/go"
 [[ -d $GOPATH/bin ]] && export PATH="$GOPATH/bin:$PATH"
 
+# pipx
+PIPX_HOME="$HOME/.local/pipx"
+[[ -d $PIPX_HOME ]] && export PIPX_HOME
+
 # pyenv
 export PYTHON_CFLAGS="-march=native -mtune=native"
 export PYTHON_CONFIGURE_OPTS="--enable-optimizations --with-lto"
