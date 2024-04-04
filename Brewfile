@@ -247,6 +247,7 @@ brew "zopfli"
 brew "pigz"
 brew "pipenv"
 brew "pipx"
+brew "poetry"
 brew "poppler"
 brew "popt"
 brew "postgresql@16", link: true
