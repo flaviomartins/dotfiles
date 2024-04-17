@@ -66,6 +66,7 @@ export HISTFILE=$HOME/.zsh_history
 export HISTFILESIZE=50000
 export HISTSIZE=50000
 export HISTTIMEFORMAT="[%F %T] "
+export HISTORY_IGNORE="ls:ll:cd:pwd:exit:clear"
 
 # PATH
 
