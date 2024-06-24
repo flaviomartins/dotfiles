@@ -113,6 +113,8 @@ PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
 # ssh-copy-id
 PATH="/opt/homebrew/opt/ssh-copy-id/bin:$PATH"
 
+export HOMEBREW_NO_ENV_HINTS=1
+
 # >>> mamba initialize >>>
 # !! Contents within this block are managed by 'mamba init' !!
 export MAMBA_EXE='/opt/homebrew/bin/micromamba';
