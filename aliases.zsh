@@ -1,6 +1,8 @@
 alias vi='nvim'
 alias vim='nvim'
 
+alias cat='bat'
+
 alias lg='lazygit'
 alias ls="eza"
 alias ls='eza -G'
