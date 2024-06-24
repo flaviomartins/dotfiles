@@ -96,13 +96,13 @@ PATH="/opt/homebrew/opt/diffutils/bin:$PATH"
 PATH="/opt/homebrew/opt/file-formula/bin:$PATH"
 
 # less
-PATH="/opt/homebrew/Cellar/less/643/bin:$PATH"
+PATH="/opt/homebrew/opt/less/bin:$PATH"
 
 # nano
-PATH="/opt/homebrew/Cellar/nano/7.2/bin:$PATH"
+PATH="/opt/homebrew/opt/nano/bin:$PATH"
 
 # openssh
-PATH="/opt/homebrew/Cellar/openssh/9.7p1/bin:$PATH"
+PATH="/opt/homebrew/opt/openssh/bin/ssh:$PATH"
 
 # postgresql
 PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
