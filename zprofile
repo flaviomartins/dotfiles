@@ -17,6 +17,9 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
+# pipenv
+export PIPENV_VENV_IN_PROJECT=1
+
 # rbenv
 eval "$(rbenv init - zsh)"
 
