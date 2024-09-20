@@ -263,6 +263,7 @@ brew "pybind11"
 brew "pyenv", args: ["HEAD"]
 brew "pyenv-virtualenv"
 brew "pygments"
+brew "python@3.11"
 brew "qpdf"
 brew "rbenv"
 brew "rclone"
