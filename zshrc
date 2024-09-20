@@ -102,7 +102,7 @@ PATH="/opt/homebrew/opt/less/bin:$PATH"
 PATH="/opt/homebrew/opt/nano/bin:$PATH"
 
 # openssh
-PATH="/opt/homebrew/opt/openssh/bin/ssh:$PATH"
+PATH="/opt/homebrew/opt/openssh/bin:$PATH"
 
 # postgresql
 PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
