@@ -113,20 +113,7 @@ PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
 # ssh-copy-id
 PATH="/opt/homebrew/opt/ssh-copy-id/bin:$PATH"
 
-export HOMEBREW_NO_ENV_HINTS=1
-
-# >>> mamba initialize >>>
-# !! Contents within this block are managed by 'mamba init' !!
-export MAMBA_EXE='/opt/homebrew/bin/micromamba';
-export MAMBA_ROOT_PREFIX="$HOME/micromamba";
-__mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__mamba_setup"
-else
-    alias micromamba="$MAMBA_EXE"  # Fallback on help from mamba activate
-fi
-unset __mamba_setup
-# <<< mamba initialize <<<
-
 # local bin
 export PATH="$HOME/.local/bin:$PATH"
+
+export HOMEBREW_NO_ENV_HINTS=1
