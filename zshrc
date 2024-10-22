@@ -117,3 +117,6 @@ PATH="/opt/homebrew/opt/ssh-copy-id/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
 export HOMEBREW_NO_ENV_HINTS=1
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/flaviomartins/.cache/lm-studio/bin"
