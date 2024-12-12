@@ -242,7 +242,7 @@ report-cycles = 10
 #   both - Show both IP address and reverse-lookup DNS hostname
 tui-address-mode = "host"
 
-# How to render AS information.
+# How to render autonomous system (AS) information.
 #
 # Allowed values are:
 #   asn             - Show the ASN [default]
@@ -282,6 +282,9 @@ tui-as-mode = "asn"
 #   C - Last icmp packet code
 #   N - Last NAT status
 #   f - Probes failed
+#   F = Forward loss
+#   B = Backward loss
+#   D = Forward loss %
 #
 # The columns will be shown in the order specified.
 tui-custom-columns = "holsravbwdt"
@@ -324,11 +327,13 @@ tui-preserve-screen = false
 # The Tui refresh rate [default: 100ms]
 tui-refresh-rate = "100ms"
 
-# The maximum ttl of hops which will be masked for privacy [default: 1]
-tui-privacy-max-ttl = 0
+# The maximum ttl of hops which will be masked for privacy [default: none]
+#tui-privacy-max-ttl = 0
 
+# The locale to use for Tui [default: auto]
+#tui-locale = "en-US"
 
-# Tui color theme configure.
+# Tui color theme configuration.
 #
 # The supported ANSI color values are:
 #   Black, Red, Green, Yellow, Blue, Magenta, Cyan, Gray, DarkGray, LightRed,
@@ -360,6 +365,7 @@ flows-chart-bar-unselected-color = "darkgray"
 flows-chart-text-current-color = "lightgreen"
 flows-chart-text-non-current-color = "white"
 samples-chart-color = "yellow"
+samples-chart-lost-color = "red"
 help-dialog-bg-color = "blue"
 help-dialog-text-color = "gray"
 settings-dialog-bg-color = "blue"
@@ -373,6 +379,8 @@ map-selected-color = "green"
 map-info-panel-border-color = "gray"
 map-info-panel-bg-color = "black"
 map-info-panel-text-color = "gray"
+info-bar-bg-color = "white"
+info-bar-text-color = "black"
 
 
 # Tui key bindings Configuration.
@@ -405,7 +413,8 @@ toggle-freeze = "ctrl+f"
 toggle-chart = "c"
 toggle-map = "m"
 toggle-flows = "f"
-toggle-privacy = "p"
+expand-privacy = "p"
+contract-privacy = "o"
 expand-hosts = "]"
 expand-hosts-max = "}"
 contract-hosts = "["
@@ -418,4 +427,5 @@ clear-selection = "esc"
 toggle-as-info = "z"
 toggle-hop-details = "d"
 quit = "q"
+quit-preserve-screen = "shift+q"
 
