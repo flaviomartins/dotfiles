@@ -116,12 +116,6 @@ PATH="/opt/homebrew/opt/ssh-copy-id/bin:$PATH"
 # local bin
 export PATH="$HOME/.local/bin:$PATH"
 
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/flaviomartins/.cache/lm-studio/bin"
-
-# Added by Toolbox App
-export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
-
 # Do not activate base environment by default
 export CONDA_AUTO_ACTIVATE_BASE=false
 
@@ -139,3 +133,15 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/flaviomartins/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/flaviomartins/.cache/lm-studio/bin"
+
+# Added by Toolbox App
+export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
