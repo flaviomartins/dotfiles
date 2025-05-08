@@ -98,6 +98,9 @@ PATH="/opt/homebrew/opt/file-formula/bin:$PATH"
 # less
 PATH="/opt/homebrew/opt/less/bin:$PATH"
 
+# mysql
+PATH="/opt/homebrew/opt/mysql@8.0/bin:$PATH"
+
 # nano
 PATH="/opt/homebrew/opt/nano/bin:$PATH"
 
