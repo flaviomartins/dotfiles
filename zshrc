@@ -108,7 +108,7 @@ PATH="/opt/homebrew/opt/nano/bin:$PATH"
 PATH="/opt/homebrew/opt/openssh/bin:$PATH"
 
 # postgresql
-PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
 
 # sqlite
 PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
