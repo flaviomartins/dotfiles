@@ -120,7 +120,7 @@ PATH="/opt/homebrew/opt/ssh-copy-id/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
 # npm global packages
-export PATH=~/.npm-global/bin:$PATH
+export PATH="$HOME/.npm-global/bin:$PATH"
 
 # Do not activate base environment by default
 export CONDA_AUTO_ACTIVATE_BASE=false
