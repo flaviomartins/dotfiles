@@ -119,9 +119,6 @@ PATH="/opt/homebrew/opt/ssh-copy-id/bin:$PATH"
 # local bin
 export PATH="$HOME/.local/bin:$PATH"
 
-# npm global packages
-export PATH="$HOME/.npm-global/bin:$PATH"
-
 # Node Version Manager (nvm)
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
