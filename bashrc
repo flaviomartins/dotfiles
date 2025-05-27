@@ -18,5 +18,9 @@ export PATH="$HOME/.local/bin:$PATH"
 # npm global packages
 export PATH="$HOME/.npm-global/bin:$PATH"
 
+# Node Version Manager (nvm)
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
 # Do not activate base environment by default
 export CONDA_AUTO_ACTIVATE_BASE=false
