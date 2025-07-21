@@ -1,13 +1,25 @@
-# Clone zcomet if necessary
-if [[ ! -f ${ZDOTDIR:-${HOME}}/.zcomet/bin/zcomet.zsh ]]; then
-  command git clone https://github.com/agkozak/zcomet.git ${ZDOTDIR:-${HOME}}/.zcomet/bin
-fi
+# zmodload zsh/zprof
+
+# Performance optimizations
+DISABLE_AUTO_UPDATE="true"
+DISABLE_MAGIC_FUNCTIONS="true"
+DISABLE_COMPFIX="true"
+
+# Autosuggestions performance optimizations
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
+ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+ZSH_AUTOSUGGEST_USE_ASYNC=1
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Clone zcomet if necessary
+if [[ ! -f ${ZDOTDIR:-${HOME}}/.zcomet/bin/zcomet.zsh ]]; then
+  command git clone https://github.com/agkozak/zcomet.git ${ZDOTDIR:-${HOME}}/.zcomet/bin
 fi
 
 # Initialize zcomet
@@ -18,18 +30,20 @@ zcomet load agkozak/zsh-z
 zcomet load atuinsh/atuin
 zcomet load ohmyzsh
 
-ZSH_AUTOSUGGEST_MANUAL_REBIND=1
-
-# It is good to load these popular plugins last, and in this order:
-zcomet load zsh-users/zsh-syntax-highlighting
-zcomet load zsh-users/zsh-autosuggestions
-zcomet load zsh-users/zsh-completions
-
 # Powerlevel10k
 zcomet load romkatv/powerlevel10k
 
-# Run compinit and compile its cache
-zcomet compinit
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/flaviomartins/.docker/completions $fpath)
+# End of Docker CLI completions
+
+# Run compinit and compile its cache (cache completions aggressively)
+autoload -Uz compinit
+if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; then
+    compinit
+else
+    compinit -C
+fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -121,7 +135,7 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # Node Version Manager (nvm)
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use  # This loads nvm
 
 # place this after nvm initialization!
 autoload -U add-zsh-hook
@@ -166,12 +180,6 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/flaviomartins/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
-# End of Docker CLI completions
-
 # Added by Toolbox App
 export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
 
@@ -201,3 +209,10 @@ alias tf-cache-clean='find "$TF_PLUGIN_CACHE_DIR" -type f -atime +60 -print -del
 
 # Shortcut to open the plugin cache in your file browser (macOS)
 alias tf-cache-open='open "$TF_PLUGIN_CACHE_DIR"'
+
+# It is good to load these popular plugins last, and in this order:
+zcomet load zsh-users/zsh-syntax-highlighting
+zcomet load zsh-users/zsh-autosuggestions
+zcomet load zsh-users/zsh-completions
+
+# zprof
