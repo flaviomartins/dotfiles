@@ -22,6 +22,7 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 # rbenv
+export RUBY_CFLAGS="-O3 -march=native -mtune=native"
 eval "$(rbenv init - zsh)"
 
 # sdkman
