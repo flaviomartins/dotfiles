@@ -65,6 +65,8 @@
 	colorMovedWS = ignore-space-change
 	renames = true
 	tool = difftastic
+[diff "sqldiff"]
+  command = sh -c 'sqldiff "$1" "$4"'
 [diff "sqlite3"]
 	binary = true
 	textconv = "<<<.dump sqlite3"
