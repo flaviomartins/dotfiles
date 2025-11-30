@@ -216,3 +216,6 @@ zcomet load zsh-users/zsh-autosuggestions
 zcomet load zsh-users/zsh-completions
 
 # zprof
+
+# Added by Antigravity
+export PATH="/Users/flaviomartins/.antigravity/antigravity/bin:$PATH"
