@@ -303,7 +303,7 @@ tui-icmp-extension-mode = "off"
 #   MaxMind "GeoLite2 City"
 #   IPinfo "IP to Country + ASN Database"
 #   IPinfo "IP to Geolocation Extended Database"
-geoip-mmdb-file = "/Users/flaviomartins/.cache/ipinfo/country_asn.mmdb"
+#geoip-mmdb-file = "/Users/flaviomartins/.cache/ipinfo/country_asn.mmdb"
 
 # How to render GeoIp information.
 #
@@ -314,7 +314,7 @@ geoip-mmdb-file = "/Users/flaviomartins/.cache/ipinfo/country_asn.mmdb"
 #   location - Show latitude and Longitude format GeoIp information
 #
 # Note this value is ignored unless a valid geoip-mmdb-file value is also provided.
-tui-geoip-mode = "short"
+tui-geoip-mode = "off"
 
 # The maximum number of addresses to show per hop [default: auto]
 #
