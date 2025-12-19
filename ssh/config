@@ -32,4 +32,4 @@ Host github.com
   # IdentityFile ~/.ssh/id_ed25519_github
 
 # Include files in the config.d directory for modular configuration
-Include config.d/*
+Include config.d/*.conf
