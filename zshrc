@@ -30,6 +30,15 @@ zcomet load agkozak/zsh-z
 zcomet load atuinsh/atuin
 zcomet load ohmyzsh
 
+# ssh-agent plugin settings
+zstyle :omz:plugins:ssh-agent quiet yes
+zstyle :omz:plugins:ssh-agent lazy yes
+zstyle :omz:plugins:ssh-agent agent-forwarding yes
+zcomet load ohmyzsh/ohmyzsh plugins/ssh-agent
+
+# Better host completion for ssh
+zcomet load sunlei/zsh-ssh
+
 # Powerlevel10k
 zcomet load romkatv/powerlevel10k
 
