@@ -1,0 +1,35 @@
+# Global settings applied to all hosts
+Host *
+  # Keep the connection open by sending a signal every 60 seconds
+  ServerAliveInterval 60
+  # Disconnect after 120 failed alive signals (approx 2 hours)
+  ServerAliveCountMax 120
+  # Optimize multiple connections to the same host
+  ControlMaster auto
+  ControlPath ~/.ssh/sockets/%r@%h-%p
+  ControlPersist 600
+  # Default compression can help on slower connections
+  Compression yes
+  # Use public key authentication by default
+  PubkeyAuthentication yes
+  # Preferred authentication methods
+  PreferredAuthentications publickey,password
+  # Disable strict host key checking for new hosts (use with caution)
+  StrictHostKeyChecking accept-new
+  # Enable visual host key verification
+  VisualHostKey yes
+  # Add private keys to the ssh-agent automatically
+  AddKeysToAgent yes
+  # Forwarding the authentication agent
+  ForwardAgent yes
+
+# GitHub Configuration
+Host github.com
+  User git
+  Hostname ssh.github.com
+  Port 443
+  # Uncomment and update if you use a specific key for GitHub
+  # IdentityFile ~/.ssh/id_ed25519_github
+
+# Include files in the config.d directory for modular configuration
+Include config.d/*
