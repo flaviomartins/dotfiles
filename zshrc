@@ -171,9 +171,6 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
-# Do not activate base environment by default
-export CONDA_AUTO_ACTIVATE_BASE=false
-
 # >>> mamba initialize >>>
 # !! Contents within this block are managed by 'mamba shell init' !!
 export MAMBA_EXE='/Users/flaviomartins/miniforge3/bin/mamba';
