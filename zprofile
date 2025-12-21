@@ -18,7 +18,7 @@ export PYTHON_CFLAGS="-O3 -march=native -mtune=native"
 export PYTHON_CONFIGURE_OPTS="--enable-shared --enable-optimizations --with-lto"
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+eval "$(pyenv init - zsh)"
 eval "$(pyenv virtualenv-init -)"
 
 # rbenv
