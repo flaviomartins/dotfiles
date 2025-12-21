@@ -72,7 +72,10 @@ else
 fi
 
 # Aliases
-source ~/.aliases.zsh
+[ -f ~/.aliases.zsh ] && source ~/.aliases.zsh
+
+# Terraform
+[ -f ~/.terraform.zsh ] && source ~/.terraform.zsh
 
 # History settings
 setopt extended_history
@@ -139,11 +142,41 @@ PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
 # ssh-copy-id
 PATH="/opt/homebrew/opt/ssh-copy-id/bin:$PATH"
 
-# local bin
-export PATH="$HOME/.local/bin:$PATH"
+# brew
+export HOMEBREW_NO_ENV_HINTS=1
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# Terraform
-source ~/.terraform.zsh
+# go
+export GOPATH="$HOME/go"
+[[ -d $GOPATH/bin ]] && export PATH="$GOPATH/bin:$PATH"
+
+# pipenv
+export PIPENV_VENV_IN_PROJECT=1
+
+# pipx
+PIPX_HOME="$HOME/.local/pipx"
+[[ -d $PIPX_HOME ]] && export PIPX_HOME
+
+# pyenv
+export PYTHON_CFLAGS="-O3 -march=native -mtune=native"
+export PYTHON_CONFIGURE_OPTS="--enable-shared --enable-optimizations --with-lto"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+eval "$(pyenv virtualenv-init -)"
+
+# >>> mamba initialize >>>
+# !! Contents within this block are managed by 'mamba shell init' !!
+export MAMBA_EXE='/Users/flaviomartins/miniforge3/bin/mamba';
+export MAMBA_ROOT_PREFIX='/Users/flaviomartins/miniforge3';
+__mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__mamba_setup"
+else
+    alias mamba="$MAMBA_EXE"  # Fallback on help from mamba activate
+fi
+unset __mamba_setup
+# <<< mamba initialize <<<
 
 # Node Version Manager (nvm)
 export NVM_DIR="$HOME/.nvm"
@@ -174,18 +207,13 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
-# >>> mamba initialize >>>
-# !! Contents within this block are managed by 'mamba shell init' !!
-export MAMBA_EXE='/Users/flaviomartins/miniforge3/bin/mamba';
-export MAMBA_ROOT_PREFIX='/Users/flaviomartins/miniforge3';
-__mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__mamba_setup"
-else
-    alias mamba="$MAMBA_EXE"  # Fallback on help from mamba activate
-fi
-unset __mamba_setup
-# <<< mamba initialize <<<
+# rbenv
+export RUBY_CFLAGS="-O3 -march=native -mtune=native"
+eval "$(rbenv init - zsh)"
+
+# sdkman
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
 
 # It is good to load these popular plugins last, and in this order:
 zcomet load zsh-users/zsh-syntax-highlighting
@@ -199,3 +227,6 @@ export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
 
 # Added by Antigravity
 export PATH="/Users/flaviomartins/.antigravity/antigravity/bin:$PATH"
+
+# local bin
+export PATH="$HOME/.local/bin:$PATH"
