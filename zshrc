@@ -228,5 +228,8 @@ export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
 # Added by Antigravity
 export PATH="/Users/flaviomartins/.antigravity/antigravity/bin:$PATH"
 
+# cargo bin
+export PATH="$HOME/.cargo/bin:$PATH"
+
 # local bin
 export PATH="$HOME/.local/bin:$PATH"
