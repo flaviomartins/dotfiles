@@ -1,3 +1,6 @@
+# Include files in the config.d directory for modular configuration
+Include ~/.ssh/config.d/*.conf
+
 # Global settings applied to all hosts
 Host *
   # Keep the connection open by sending a signal every 60 seconds
@@ -22,14 +25,3 @@ Host *
   AddKeysToAgent yes
   # Forwarding the authentication agent
   ForwardAgent yes
-
-# GitHub Configuration
-Host github.com
-  User git
-  Hostname ssh.github.com
-  Port 443
-  # Uncomment and update if you use a specific key for GitHub
-  # IdentityFile ~/.ssh/id_ed25519_github
-
-# Include files in the config.d directory for modular configuration
-Include config.d/*.conf
