@@ -95,52 +95,83 @@ export HISTTIMEFORMAT="[%F %T] "
 export HISTORY_IGNORE="ls:ll:cd:pwd:exit:clear"
 
 # PATH
+typeset -U path PATH
 
-# gnubin
-PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
-PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
-PATH="/opt/homebrew/opt/gawk/libexec/gnubin:$PATH"
-PATH="/opt/homebrew/opt/gnu-indent/libexec/gnubin:$PATH"
-PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
-PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
-PATH="/opt/homebrew/opt/gnu-time/libexec/gnubin:$PATH"
-PATH="/opt/homebrew/opt/gnu-which/libexec/gnubin:$PATH"
+path_prepend() {
+  if [[ -d "$1" ]]; then
+    path=("$1" $path)
+  else
+    print -u2 "warning: PATH entry does not exist: $1"
+  fi
+}
 
-# bash
-PATH="/opt/homebrew/opt/bash/bin:$PATH"
+# GNU coreutils, diffutils, findutils (alternative to uutils below)
+# path_prepend "/opt/homebrew/opt/coreutils/libexec/gnubin"
+# path_prepend "/opt/homebrew/opt/diffutils/libexec/gnubin"
+# path_prepend "/opt/homebrew/opt/findutils/libexec/gnubin"
 
-# colordiff
-PATH="/opt/homebrew/opt/colordiff/bin:$PATH"
+# uutils (Rust replacements for coreutils, diffutils, findutils)
+path_prepend "/opt/homebrew/opt/uutils-coreutils/libexec/uubin"
+path_prepend "/opt/homebrew/opt/uutils-diffutils/libexec/uubin"
+path_prepend "/opt/homebrew/opt/uutils-findutils/libexec/uubin"
 
-# curl
-PATH="/opt/homebrew/opt/curl/bin:$PATH"
+# GNU text processing
+path_prepend "/opt/homebrew/opt/gawk/libexec/gnubin"
+path_prepend "/opt/homebrew/opt/gnu-indent/libexec/gnubin"
+path_prepend "/opt/homebrew/opt/gnu-sed/libexec/gnubin"
+path_prepend "/opt/homebrew/opt/grep/libexec/gnubin"
 
-# diffutils
-PATH="/opt/homebrew/opt/diffutils/bin:$PATH"
+# GNU file and archive tools
+path_prepend "/opt/homebrew/opt/gnu-tar/libexec/gnubin"
+path_prepend "/opt/homebrew/opt/gzip/bin"
+path_prepend "/opt/homebrew/opt/unzip/bin"
+path_prepend "/opt/homebrew/opt/zip/bin"
 
-# file-formula
-PATH="/opt/homebrew/opt/file-formula/bin:$PATH"
+# GNU system utilities
+path_prepend "/opt/homebrew/opt/gnu-time/libexec/gnubin"
+path_prepend "/opt/homebrew/opt/gnu-which/libexec/gnubin"
+path_prepend "/opt/homebrew/opt/make/libexec/gnubin"
+path_prepend "/opt/homebrew/opt/moreutils/bin"
+path_prepend "/opt/homebrew/opt/util-linux/bin"
 
-# less
-PATH="/opt/homebrew/opt/less/bin:$PATH"
+# GNU network utilities
+path_prepend "/opt/homebrew/opt/inetutils/libexec/gnubin"
+path_prepend "/opt/homebrew/opt/wget/bin"
+path_prepend "/opt/homebrew/opt/curl/bin"
+path_prepend "/opt/homebrew/opt/rsync/bin"
 
-# mysql
-PATH="/opt/homebrew/opt/mysql@8.0/bin:$PATH"
+# File and text tools
+path_prepend "/opt/homebrew/opt/binutils/bin"
+path_prepend "/opt/homebrew/opt/dos2unix/bin"
+path_prepend "/opt/homebrew/opt/ed/bin"
+path_prepend "/opt/homebrew/opt/file-formula/bin"
+path_prepend "/opt/homebrew/opt/gnu-getopt/bin"
+path_prepend "/opt/homebrew/opt/gpatch/bin"
+path_prepend "/opt/homebrew/opt/wdiff/bin"
 
-# nano
-PATH="/opt/homebrew/opt/nano/bin:$PATH"
+# Terminal and editors
+path_prepend "/opt/homebrew/opt/bash/bin"
+path_prepend "/opt/homebrew/opt/less/bin"
+path_prepend "/opt/homebrew/opt/nano/bin"
+path_prepend "/opt/homebrew/opt/screen/bin"
 
-# openssh
-PATH="/opt/homebrew/opt/openssh/bin:$PATH"
+# Diff and color
+path_prepend "/opt/homebrew/opt/colordiff/bin"
 
-# postgresql
-PATH="/opt/homebrew/opt/postgresql@18/bin:$PATH"
+# Security and networking
+path_prepend "/opt/homebrew/opt/openssh/bin"
+path_prepend "/opt/homebrew/opt/openssl@3/bin"
+path_prepend "/opt/homebrew/opt/openssl/bin"
+path_prepend "/opt/homebrew/opt/ssh-copy-id/bin"
+path_prepend "/opt/homebrew/opt/watch/bin"
 
-# sqlite
-PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
+# Databases
+path_prepend "/opt/homebrew/opt/mysql@8.0/bin"
+path_prepend "/opt/homebrew/opt/postgresql@18/bin"
+path_prepend "/opt/homebrew/opt/redis/bin"
+path_prepend "/opt/homebrew/opt/sqlite/bin"
 
-# ssh-copy-id
-PATH="/opt/homebrew/opt/ssh-copy-id/bin:$PATH"
+export PATH
 
 # brew
 export HOMEBREW_NO_ENV_HINTS=1
