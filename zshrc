@@ -105,43 +105,54 @@ path_prepend() {
   fi
 }
 
-# GNU coreutils, diffutils, findutils (alternative to uutils below)
+# Core POSIX/GNU userland replacements
+# (Keep one family active: GNU *or* uutils)
+
+# GNU coreutils/diffutils/findutils (alternative to uutils)
 # path_prepend "/opt/homebrew/opt/coreutils/libexec/gnubin"
 # path_prepend "/opt/homebrew/opt/diffutils/libexec/gnubin"
 # path_prepend "/opt/homebrew/opt/findutils/libexec/gnubin"
 
-# uutils (Rust replacements for coreutils, diffutils, findutils)
+# uutils (Rust replacements)
 path_prepend "/opt/homebrew/opt/uutils-coreutils/libexec/uubin"
 path_prepend "/opt/homebrew/opt/uutils-diffutils/libexec/uubin"
 path_prepend "/opt/homebrew/opt/uutils-findutils/libexec/uubin"
 
-# GNU text processing
+# Text processing
 path_prepend "/opt/homebrew/opt/gawk/libexec/gnubin"
 path_prepend "/opt/homebrew/opt/gnu-indent/libexec/gnubin"
 path_prepend "/opt/homebrew/opt/gnu-sed/libexec/gnubin"
 path_prepend "/opt/homebrew/opt/grep/libexec/gnubin"
 
-# GNU file and archive tools
+# File/archive/compression
 path_prepend "/opt/homebrew/opt/gnu-tar/libexec/gnubin"
 path_prepend "/opt/homebrew/opt/gzip/bin"
 path_prepend "/opt/homebrew/opt/unzip/bin"
 path_prepend "/opt/homebrew/opt/zip/bin"
 
-# GNU system utilities
+# System/build utilities
 path_prepend "/opt/homebrew/opt/gnu-time/libexec/gnubin"
 path_prepend "/opt/homebrew/opt/gnu-which/libexec/gnubin"
 path_prepend "/opt/homebrew/opt/make/libexec/gnubin"
 path_prepend "/opt/homebrew/opt/moreutils/bin"
 path_prepend "/opt/homebrew/opt/util-linux/bin"
+path_prepend "/opt/homebrew/opt/watch/bin"
 
-# GNU network utilities
-path_prepend "/opt/homebrew/opt/inetutils/libexec/gnubin"
-path_prepend "/opt/homebrew/opt/wget/bin"
+# Networking/transfer
 path_prepend "/opt/homebrew/opt/curl/bin"
+path_prepend "/opt/homebrew/opt/inetutils/libexec/gnubin"
+path_prepend "/opt/homebrew/opt/openssh/bin"
 path_prepend "/opt/homebrew/opt/rsync/bin"
+path_prepend "/opt/homebrew/opt/ssh-copy-id/bin"
+path_prepend "/opt/homebrew/opt/wget/bin"
 
-# File and text tools
+# Crypto/TLS
+path_prepend "/opt/homebrew/opt/openssl/bin"
+path_prepend "/opt/homebrew/opt/openssl@3/bin"
+
+# File/text helper tools
 path_prepend "/opt/homebrew/opt/binutils/bin"
+path_prepend "/opt/homebrew/opt/colordiff/bin"
 path_prepend "/opt/homebrew/opt/dos2unix/bin"
 path_prepend "/opt/homebrew/opt/ed/bin"
 path_prepend "/opt/homebrew/opt/file-formula/bin"
@@ -149,21 +160,11 @@ path_prepend "/opt/homebrew/opt/gnu-getopt/bin"
 path_prepend "/opt/homebrew/opt/gpatch/bin"
 path_prepend "/opt/homebrew/opt/wdiff/bin"
 
-# Terminal and editors
+# Shell/terminal tools
 path_prepend "/opt/homebrew/opt/bash/bin"
 path_prepend "/opt/homebrew/opt/less/bin"
 path_prepend "/opt/homebrew/opt/nano/bin"
 path_prepend "/opt/homebrew/opt/screen/bin"
-
-# Diff and color
-path_prepend "/opt/homebrew/opt/colordiff/bin"
-
-# Security and networking
-path_prepend "/opt/homebrew/opt/openssh/bin"
-path_prepend "/opt/homebrew/opt/openssl@3/bin"
-path_prepend "/opt/homebrew/opt/openssl/bin"
-path_prepend "/opt/homebrew/opt/ssh-copy-id/bin"
-path_prepend "/opt/homebrew/opt/watch/bin"
 
 # Databases
 path_prepend "/opt/homebrew/opt/mysql@8.0/bin"
