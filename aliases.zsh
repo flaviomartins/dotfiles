@@ -1,3 +1,5 @@
+alias rm="rm -i"
+
 alias vi='nvim'
 alias vim='nvim'
 
@@ -8,6 +10,7 @@ alias lg='lazygit'
 alias ls='uu-ls --color=auto'
 alias ll='uu-ls -lh --color=auto'
 alias lsa='uu-ls -lah --color=auto'
+alias lsd='uu-ls -lh --color=auto | grep "^d"'
 
 alias qget='NQDIR=~/Downloads nq aria2c -d ~/Downloads'
 alias qwait='NQDIR=~/Downloads fq -q'
