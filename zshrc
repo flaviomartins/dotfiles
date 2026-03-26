@@ -30,10 +30,6 @@ zcomet load agkozak/zsh-z
 zcomet load atuinsh/atuin
 zcomet load ohmyzsh
 
-# dotenv plugin settings
-zstyle :omz:plugins:dotenv filename .env
-zcomet load ohmyzsh/ohmyzsh plugins/dotenv
-
 # direnv plugin settings
 zstyle :omz:plugins:direnv mode export
 zcomet load ohmyzsh/ohmyzsh plugins/direnv
