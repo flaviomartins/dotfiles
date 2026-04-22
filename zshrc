@@ -47,7 +47,7 @@ zcomet load sunlei/zsh-ssh
 zcomet load romkatv/powerlevel10k
 
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/flaviomartins/.docker/completions $fpath)
+[[ -d "$HOME/.docker/completions" ]] && fpath=("$HOME/.docker/completions" $fpath)
 # End of Docker CLI completions
 
 # Run compinit and compile its cache (cache completions aggressively)
@@ -69,11 +69,8 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='nvim'
-else
-  export EDITOR='nvim'
-fi
+export EDITOR='nvim'
+export VISUAL="$EDITOR"
 
 # Aliases
 [ -f ~/.aliases.zsh ] && source ~/.aliases.zsh
@@ -107,6 +104,10 @@ path_prepend() {
   else
     print -u2 "warning: PATH entry does not exist: $1"
   fi
+}
+
+command_exists() {
+  (( $+commands[$1] ))
 }
 
 # Core POSIX/GNU userland replacements
@@ -180,7 +181,9 @@ export PATH
 
 # brew
 export HOMEBREW_NO_ENV_HINTS=1
-eval "$(/opt/homebrew/bin/brew shellenv)"
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
 # go
 export GOPATH="$HOME/go"
@@ -198,40 +201,82 @@ export PYTHON_CFLAGS="-O3 -march=native -mtune=native"
 export PYTHON_CONFIGURE_OPTS="--enable-shared --enable-optimizations --with-lto"
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
-eval "$(pyenv virtualenv-init -)"
+if command_exists pyenv; then
+  eval "$(pyenv init - zsh)"
+  [[ -d "$PYENV_ROOT/plugins/pyenv-virtualenv" ]] && eval "$(pyenv virtualenv-init -)"
+fi
 
 # Node Version Manager (nvm)
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use  # This loads nvm
-
-# place this after nvm initialization!
 autoload -U add-zsh-hook
+
+load_nvm() {
+  [[ -n ${__NVM_LOADED:-} ]] && return 0
+  [[ -s "$NVM_DIR/nvm.sh" ]] || return 1
+
+  unset -f nvm node npm npx corepack pnpm yarn yarnpkg 2>/dev/null
+  . "$NVM_DIR/nvm.sh" --no-use
+  typeset -g __NVM_LOADED=1
+}
+
+find_nvmrc() {
+  local dir="$PWD"
+
+  while true; do
+    [[ -f "$dir/.nvmrc" ]] && {
+      print -r -- "$dir/.nvmrc"
+      return 0
+    }
+    [[ $dir == / ]] && return 1
+    dir=${dir:h}
+  done
+}
 
 load-nvmrc() {
   local nvmrc_path
-  nvmrc_path="$(nvm_find_nvmrc)"
+  nvmrc_path="$(find_nvmrc)"
 
-  if [ -n "$nvmrc_path" ]; then
+  if [[ -n $nvmrc_path ]]; then
+    load_nvm || return
+
     local nvmrc_node_version
-    nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+    nvmrc_node_version="$(nvm version "$(<"$nvmrc_path")")"
 
-    if [ "$nvmrc_node_version" = "N/A" ]; then
+    if [[ $nvmrc_node_version == "N/A" ]]; then
       nvm install --no-progress
-    elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
+    elif [[ $nvmrc_node_version != "$(nvm version)" ]]; then
       nvm use --silent
     fi
-  elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
-    nvm use default --silent
+    typeset -g __NVM_AUTO_USE_ACTIVE=1
+  elif [[ -n ${__NVM_AUTO_USE_ACTIVE:-} ]]; then
+    load_nvm || return
+
+    if [[ "$(nvm version)" != "$(nvm version default)" ]]; then
+      nvm use default --silent
+    fi
+    unset __NVM_AUTO_USE_ACTIVE
   fi
 }
 
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+if [[ -s "$NVM_DIR/nvm.sh" ]]; then
+  nvm() { load_nvm && nvm "$@"; }
+  node() { load_nvm && node "$@"; }
+  npm() { load_nvm && npm "$@"; }
+  npx() { load_nvm && npx "$@"; }
+  corepack() { load_nvm && corepack "$@"; }
+  pnpm() { load_nvm && pnpm "$@"; }
+  yarn() { load_nvm && yarn "$@"; }
+  yarnpkg() { load_nvm && yarnpkg "$@"; }
+
+  add-zsh-hook chpwd load-nvmrc
+  load-nvmrc
+fi
 
 # rbenv
 export RUBY_CFLAGS="-O3 -march=native -mtune=native"
-eval "$(rbenv init - zsh)"
+if command_exists rbenv; then
+  eval "$(rbenv init - zsh)"
+fi
 
 # sdkman
 export SDKMAN_DIR="$HOME/.sdkman"
@@ -256,31 +301,42 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # local bin
 export PATH="$HOME/.local/bin:$PATH"
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/flaviomartins/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/flaviomartins/miniforge3/etc/profile.d/conda.sh" ]; then
-        . "/Users/flaviomartins/miniforge3/etc/profile.d/conda.sh"
+# Lazy-load conda/mamba to keep interactive startup fast.
+export MAMBA_EXE="$HOME/miniforge3/bin/mamba"
+export MAMBA_ROOT_PREFIX="$HOME/miniforge3"
+
+load_conda_stack() {
+  [[ -n ${__CONDA_STACK_LOADED:-} ]] && return 0
+
+  local conda_bin="$HOME/miniforge3/bin/conda"
+  local __conda_setup __mamba_setup
+
+  unset -f conda mamba 2>/dev/null
+
+  if [[ -x $conda_bin ]]; then
+    if __conda_setup="$("$conda_bin" shell.zsh hook 2> /dev/null)"; then
+      eval "$__conda_setup"
+    elif [[ -f "$HOME/miniforge3/etc/profile.d/conda.sh" ]]; then
+      . "$HOME/miniforge3/etc/profile.d/conda.sh"
     else
-        export PATH="/Users/flaviomartins/miniforge3/bin:$PATH"
+      path_prepend "$HOME/miniforge3/bin"
     fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+  fi
 
+  if [[ -x $MAMBA_EXE ]]; then
+    if __mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"; then
+      eval "$__mamba_setup"
+    else
+      mamba() {
+        "$MAMBA_EXE" "$@"
+      }
+    fi
+  fi
 
-# >>> mamba initialize >>>
-# !! Contents within this block are managed by 'mamba shell init' !!
-export MAMBA_EXE='/Users/flaviomartins/miniforge3/bin/mamba';
-export MAMBA_ROOT_PREFIX='/Users/flaviomartins/miniforge3';
-__mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__mamba_setup"
-else
-    alias mamba="$MAMBA_EXE"  # Fallback on help from mamba activate
+  typeset -g __CONDA_STACK_LOADED=1
+}
+
+if [[ -x "$HOME/miniforge3/bin/conda" || -x "$MAMBA_EXE" ]]; then
+  conda() { load_conda_stack && conda "$@"; }
+  mamba() { load_conda_stack && mamba "$@"; }
 fi
-unset __mamba_setup
-# <<< mamba initialize <<<
