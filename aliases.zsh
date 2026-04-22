@@ -153,15 +153,38 @@ honey() {
 	local limit
 	limit=${1:-0}
 
+	if (( $# > 0 )) && [[ $1 == <-> ]]; then
+		shift
+	elif (( $# > 0 )); then
+		limit=0
+	fi
+
 	if [[ $limit != <-> ]]; then
 		print -u2 'usage: honey [top_n]'
 		return 2
 	fi
 
+	local -a files
+	files=("$@")
+
 	if (( limit > 0 )); then
-		command sort | uniq -c | command sort -rn | head -n "$limit"
+		command awk '
+			{ count[$0]++ }
+			END {
+				for (line in count) {
+					printf "%7d %s\n", count[line], line
+				}
+			}
+		' "${files[@]}" | command sort -rn | command head -n "$limit"
 	else
-		command sort | uniq -c | command sort -rn
+		command awk '
+			{ count[$0]++ }
+			END {
+				for (line in count) {
+					printf "%7d %s\n", count[line], line
+				}
+			}
+		' "${files[@]}" | command sort -rn
 	fi
 }
 
