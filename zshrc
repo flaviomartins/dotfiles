@@ -10,16 +10,17 @@ ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
 ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 ZSH_AUTOSUGGEST_USE_ASYNC=1
 
+# Clone zcomet if necessary.
+# Keep this above the instant prompt block because first-run bootstrapping may touch the network.
+if [[ ! -f ${ZDOTDIR:-${HOME}}/.zcomet/bin/zcomet.zsh ]]; then
+  command git clone https://github.com/agkozak/zcomet.git ${ZDOTDIR:-${HOME}}/.zcomet/bin
+fi
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-# Clone zcomet if necessary
-if [[ ! -f ${ZDOTDIR:-${HOME}}/.zcomet/bin/zcomet.zsh ]]; then
-  command git clone https://github.com/agkozak/zcomet.git ${ZDOTDIR:-${HOME}}/.zcomet/bin
 fi
 
 # Initialize zcomet
@@ -52,10 +53,12 @@ zcomet load romkatv/powerlevel10k
 
 # Run compinit and compile its cache (cache completions aggressively)
 autoload -Uz compinit
-if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; then
-    compinit
+typeset -g ZSH_COMPDUMP="${ZDOTDIR:-$HOME}/.zcompdump"
+if [[ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' "$ZSH_COMPDUMP" 2>/dev/null)" ]]; then
+  compinit -d "$ZSH_COMPDUMP"
+  zcompile "$ZSH_COMPDUMP" &! 2>/dev/null
 else
-    compinit -C
+  compinit -C -d "$ZSH_COMPDUMP"
 fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
