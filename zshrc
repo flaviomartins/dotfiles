@@ -29,11 +29,17 @@ source ${ZDOTDIR:-${HOME}}/.zcomet/bin/zcomet.zsh
 # Load some plugins
 zcomet load agkozak/zsh-z
 zcomet load atuinsh/atuin
-zcomet load ohmyzsh
 
 # direnv plugin settings
 zstyle :omz:plugins:direnv mode export
 zcomet load ohmyzsh/ohmyzsh plugins/direnv
+
+# The Oh My Zsh ssh-agent plugin expects SHORT_HOST but does not need the full OMZ bootstrap.
+if [[ "$OSTYPE" = darwin* ]]; then
+  SHORT_HOST=$(scutil --get LocalHostName 2>/dev/null) || SHORT_HOST="${HOST/.*/}"
+else
+  SHORT_HOST="${HOST/.*/}"
+fi
 
 # ssh-agent plugin settings
 zstyle :omz:plugins:ssh-agent quiet yes
@@ -47,6 +53,9 @@ zcomet load sunlei/zsh-ssh
 # Powerlevel10k
 zcomet load romkatv/powerlevel10k
 
+# Load additional completion definitions before compinit.
+zcomet load zsh-users/zsh-completions
+
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
 [[ -d "$HOME/.docker/completions" ]] && fpath=("$HOME/.docker/completions" $fpath)
 # End of Docker CLI completions
@@ -54,7 +63,10 @@ zcomet load romkatv/powerlevel10k
 # Run compinit and compile its cache (cache completions aggressively)
 autoload -Uz compinit
 typeset -g ZSH_COMPDUMP="${ZDOTDIR:-$HOME}/.zcompdump"
-if [[ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' "$ZSH_COMPDUMP" 2>/dev/null)" ]]; then
+typeset -g ZSH_COMPINIT_REFRESH_SECONDS=$((7 * 24 * 60 * 60))
+
+zcompdump_mtime=$(stat -f '%m' "$ZSH_COMPDUMP" 2>/dev/null || print 0)
+if (( EPOCHSECONDS - zcompdump_mtime > ZSH_COMPINIT_REFRESH_SECONDS )); then
   compinit -d "$ZSH_COMPDUMP"
   zcompile "$ZSH_COMPDUMP" &! 2>/dev/null
 else
@@ -347,7 +359,6 @@ fi
 # It is good to load these popular plugins last, and in this order:
 zcomet load zsh-users/zsh-syntax-highlighting
 zcomet load zsh-users/zsh-autosuggestions
-zcomet load zsh-users/zsh-completions
 
 # zprof
 
