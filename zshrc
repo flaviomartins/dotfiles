@@ -64,8 +64,11 @@ zcomet load zsh-users/zsh-completions
 autoload -Uz compinit
 typeset -g ZSH_COMPDUMP="${ZDOTDIR:-$HOME}/.zcompdump"
 typeset -g ZSH_COMPINIT_REFRESH_SECONDS=$((7 * 24 * 60 * 60))
+typeset -gi zcompdump_mtime=0
 
-zcompdump_mtime=$(stat -f '%m' "$ZSH_COMPDUMP" 2>/dev/null || print 0)
+if [[ -f "$ZSH_COMPDUMP" ]]; then
+  zcompdump_mtime=$(/usr/bin/stat -f '%m' "$ZSH_COMPDUMP" 2>/dev/null)
+fi
 if (( EPOCHSECONDS - zcompdump_mtime > ZSH_COMPINIT_REFRESH_SECONDS )); then
   compinit -d "$ZSH_COMPDUMP"
   zcompile "$ZSH_COMPDUMP" &! 2>/dev/null
