@@ -149,7 +149,21 @@ if command_exists fq; then
 fi
 
 # Honeyman's "idiom" command.
-alias honey='sort | uniq -c | sort -rn'
+honey() {
+	local limit
+	limit=${1:-0}
+
+	if [[ $limit != <-> ]]; then
+		print -u2 'usage: honey [top_n]'
+		return 2
+	fi
+
+	if (( limit > 0 )); then
+		command sort | uniq -c | command sort -rn | head -n "$limit"
+	else
+		command sort | uniq -c | command sort -rn
+	fi
+}
 
 if command_exists shuf; then
 	pincode() {
