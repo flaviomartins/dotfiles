@@ -8,6 +8,19 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
+take() {
+	(( $# == 1 )) || {
+		print -u2 'usage: take <directory>'
+		return 2
+	}
+
+	command mkdir -p -- "$1" && cd -- "$1"
+}
+
+showpath() {
+	print -l -- $path
+}
+
 if command_exists nvim; then
 	alias vi='nvim'
 	alias vim='nvim'
@@ -35,6 +48,10 @@ if command_exists eza; then
 fi
 
 if command_exists fd; then
+	ff() {
+		command fd --type f --hidden --exclude .git . "${1:-.}"
+	}
+
 	lsd() {
 		fd --max-depth 1 --type d --hidden --exclude .git . "${1:-.}"
 	}
@@ -65,10 +82,30 @@ if command_exists git; then
 	alias gpf='git push --force-with-lease'
 	alias gpl='git pull --rebase --autostash'
 	alias gs='git status --short --branch'
+
+	groot() {
+		local root
+		root=$(command git rev-parse --show-toplevel 2> /dev/null) || return
+		cd "$root" || return
+	}
 fi
 
 if command_exists gh; then
 	alias pr='gh pr view --web'
+	alias repo='gh repo view --web'
+fi
+
+if command_exists docker; then
+	alias dc='docker compose'
+	alias dps='docker ps'
+	alias dcu='docker compose up'
+	alias dcud='docker compose up -d'
+	alias dcd='docker compose down'
+	alias dcl='docker compose logs -f'
+fi
+
+if command_exists lazydocker; then
+	alias ld='lazydocker'
 fi
 
 if command_exists rg; then
@@ -97,6 +134,10 @@ fi
 
 if command_exists just; then
 	alias j='just'
+fi
+
+if command_exists dua; then
+	alias dui='dua interactive'
 fi
 
 if command_exists nq && command_exists aria2c; then
