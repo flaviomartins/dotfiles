@@ -204,9 +204,25 @@ export PYTHON_CFLAGS="-O3 -march=native -mtune=native"
 export PYTHON_CONFIGURE_OPTS="--enable-shared --enable-optimizations --with-lto"
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-if command_exists pyenv; then
-  eval "$(pyenv init - zsh)"
-  [[ -d "$PYENV_ROOT/plugins/pyenv-virtualenv" ]] && eval "$(pyenv virtualenv-init -)"
+[[ -d $PYENV_ROOT/shims ]] && export PATH="$PYENV_ROOT/shims:$PATH"
+
+load_pyenv_stack() {
+  [[ -n ${__PYENV_STACK_LOADED:-} ]] && return 0
+
+  unset -f pyenv 2>/dev/null
+
+  if command_exists pyenv; then
+    eval "$(pyenv init - zsh)"
+    [[ -d "$PYENV_ROOT/plugins/pyenv-virtualenv" ]] && eval "$(pyenv virtualenv-init -)"
+    typeset -g __PYENV_STACK_LOADED=1
+    return 0
+  fi
+
+  return 1
+}
+
+if [[ -d $PYENV_ROOT ]]; then
+  pyenv() { load_pyenv_stack && pyenv "$@"; }
 fi
 
 # Node Version Manager (nvm)
@@ -277,13 +293,56 @@ fi
 
 # rbenv
 export RUBY_CFLAGS="-O3 -march=native -mtune=native"
-if command_exists rbenv; then
-  eval "$(rbenv init - zsh)"
+export RBENV_ROOT="$HOME/.rbenv"
+[[ -d $RBENV_ROOT/bin ]] && export PATH="$RBENV_ROOT/bin:$PATH"
+[[ -d $RBENV_ROOT/shims ]] && export PATH="$RBENV_ROOT/shims:$PATH"
+
+load_rbenv_stack() {
+  [[ -n ${__RBENV_STACK_LOADED:-} ]] && return 0
+
+  unset -f rbenv 2>/dev/null
+
+  if command_exists rbenv; then
+    eval "$(rbenv init - zsh)"
+    typeset -g __RBENV_STACK_LOADED=1
+    return 0
+  fi
+
+  return 1
+}
+
+if [[ -d $RBENV_ROOT ]]; then
+  rbenv() { load_rbenv_stack && rbenv "$@"; }
 fi
 
 # sdkman
 export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
+
+sdkman_add_current_bins() {
+  local candidate_dir current_bin
+
+  [[ -d "$SDKMAN_DIR/candidates" ]] || return 0
+
+  for candidate_dir in "$SDKMAN_DIR"/candidates/*(N); do
+    current_bin="$candidate_dir/current/bin"
+    [[ -d $current_bin ]] && path_prepend "$current_bin"
+  done
+}
+
+load_sdkman() {
+  [[ -n ${__SDKMAN_LOADED:-} ]] && return 0
+  [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] || return 1
+
+  unset -f sdk 2>/dev/null
+  source "$SDKMAN_DIR/bin/sdkman-init.sh"
+  typeset -g __SDKMAN_LOADED=1
+}
+
+sdkman_add_current_bins
+
+if [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]]; then
+  sdk() { load_sdkman && sdk "$@"; }
+fi
 
 # It is good to load these popular plugins last, and in this order:
 zcomet load zsh-users/zsh-syntax-highlighting
