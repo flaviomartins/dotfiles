@@ -135,6 +135,19 @@ path_prepend() {
   fi
 }
 
+# Optional bin warning mode:
+# 1 (default) => suppress missing-directory warnings for optional bins.
+# 0 => show warnings to audit optional bins that are currently missing.
+typeset -gi ZSH_PATH_OPTIONAL_QUIET=${ZSH_PATH_OPTIONAL_QUIET:-1}
+
+path_prepend_optional() {
+  if [[ -d "$1" ]]; then
+    path=("$1" $path)
+  elif (( ZSH_PATH_OPTIONAL_QUIET == 0 )); then
+    print -u2 "warning: optional PATH entry does not exist: $1"
+  fi
+}
+
 command_exists() {
   (( $+commands[$1] ))
 }
@@ -368,16 +381,16 @@ zcomet load zsh-users/zsh-syntax-highlighting
 # zprof
 
 # cargo bin
-[[ -d "$HOME/.cargo/bin" ]] && path_prepend "$HOME/.cargo/bin"
+path_prepend_optional "$HOME/.cargo/bin"
 
 # local bin
-[[ -d "$HOME/.local/bin" ]] && path_prepend "$HOME/.local/bin"
+path_prepend_optional "$HOME/.local/bin"
 
 # Added by Toolbox App
-[[ -d "$HOME/Library/Application Support/JetBrains/Toolbox/scripts" ]] && path_prepend "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
+path_prepend_optional "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
 
 # Added by Antigravity
-[[ -d "$HOME/.antigravity/antigravity/bin" ]] && path_prepend "$HOME/.antigravity/antigravity/bin"
+path_prepend_optional "$HOME/.antigravity/antigravity/bin"
 
 export PATH
 
