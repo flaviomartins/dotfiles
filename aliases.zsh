@@ -8,6 +8,14 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
+if command_exists gxargs; then
+	alias xargs='gxargs'
+fi
+
+if command_exists gfind; then
+	alias find='gfind'
+fi
+
 dotfiles() {
 	cd "$HOME/.dotfiles" || return
 }
@@ -39,18 +47,18 @@ if command_exists lazygit; then
 	alias lg='lazygit'
 fi
 
-if command_exists uu-ls; then
+if command_exists eza; then
+	alias l='eza --group-directories-first --icons=auto'
+	alias la='eza -A --group-directories-first --icons=auto'
+	alias ls='eza --group-directories-first --icons=auto'
+	alias ll='eza -lh --group-directories-first --icons=auto'
+	alias lsa='eza -lah --group-directories-first --icons=auto'
+elif command_exists uu-ls; then
 	alias l='uu-ls --color=auto'
 	alias la='uu-ls -A --color=auto'
 	alias ls='uu-ls --color=auto'
 	alias ll='uu-ls -lh --color=auto'
 	alias lsa='uu-ls -lah --color=auto'
-elif command_exists eza; then
-	alias l='eza --group-directories-first --icons=never'
-	alias la='eza -A --group-directories-first --icons=never'
-	alias ls='eza --group-directories-first --icons=never'
-	alias ll='eza -lh --group-directories-first --icons=never'
-	alias lsa='eza -lah --group-directories-first --icons=never'
 elif command_exists ls; then
 	alias l='ls -F'
 	alias la='ls -A'
@@ -60,7 +68,7 @@ fi
 
 if command_exists eza; then
 	tree() {
-		command eza --tree --level="${1:-2}" --group-directories-first --icons=never "${2:-.}"
+		command eza --tree --level="${1:-2}" --group-directories-first --icons=auto "${2:-.}"
 	}
 elif command_exists tree; then
 	tree() {

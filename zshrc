@@ -161,15 +161,15 @@ fi
 # Core POSIX/GNU userland replacements
 # (Keep one family active: GNU *or* uutils)
 
+# Drop inherited uutils overrides to keep command resolution deterministic.
+path=("${(@)path:#/opt/homebrew/opt/uutils-coreutils/libexec/uubin}")
+path=("${(@)path:#/opt/homebrew/opt/uutils-diffutils/libexec/uubin}")
+path=("${(@)path:#/opt/homebrew/opt/uutils-findutils/libexec/uubin}")
+
 # GNU coreutils/diffutils/findutils (alternative to uutils)
-# path_prepend "/opt/homebrew/opt/coreutils/libexec/gnubin"
+path_prepend "/opt/homebrew/opt/coreutils/libexec/gnubin"
 # path_prepend "/opt/homebrew/opt/diffutils/libexec/gnubin"
 # path_prepend "/opt/homebrew/opt/findutils/libexec/gnubin"
-
-# uutils (Rust replacements)
-path_prepend "/opt/homebrew/opt/uutils-coreutils/libexec/uubin"
-path_prepend "/opt/homebrew/opt/uutils-diffutils/libexec/uubin"
-path_prepend "/opt/homebrew/opt/uutils-findutils/libexec/uubin"
 
 # Text processing
 path_prepend "/opt/homebrew/opt/gawk/libexec/gnubin"
