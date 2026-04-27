@@ -45,6 +45,17 @@ if command_exists uu-ls; then
 	alias ls='uu-ls --color=auto'
 	alias ll='uu-ls -lh --color=auto'
 	alias lsa='uu-ls -lah --color=auto'
+elif command_exists eza; then
+	alias l='eza --group-directories-first --icons=never'
+	alias la='eza -A --group-directories-first --icons=never'
+	alias ls='eza --group-directories-first --icons=never'
+	alias ll='eza -lh --group-directories-first --icons=never'
+	alias lsa='eza -lah --group-directories-first --icons=never'
+elif command_exists ls; then
+	alias l='ls -F'
+	alias la='ls -A'
+	alias ll='ls -lh'
+	alias lsa='ls -lah'
 fi
 
 if command_exists eza; then
@@ -104,19 +115,29 @@ if command_exists git; then
 	alias gaa='git add --all'
 	alias gap='git add -p'
 	alias gb='git branch'
+	alias gcl='git clone'
 	alias gc='git commit'
 	alias gca='git commit --amend'
 	alias gcan='git commit --amend --no-edit'
 	alias gco='git checkout'
 	alias gd='git diff'
 	alias gdc='git diff --cached'
+	alias gf='git fetch --all --prune --tags'
+	alias gfa='git fetch --all --prune'
 	alias gl='git log --oneline --decorate --graph --all'
+	alias gm='git merge'
 	alias gp='git push'
 	alias gpf='git push --force-with-lease'
 	alias gpl='git pull --rebase --autostash'
+	alias gr='git rebase'
+	alias gra='git rebase --abort'
+	alias grc='git rebase --continue'
 	alias grs='git restore'
 	alias gs='git status --short --branch'
+	alias gst='git stash push'
+	alias gstp='git stash pop'
 	alias gsw='git switch'
+	alias gsu='git submodule update --init --recursive'
 
 	groot() {
 		local root
