@@ -12,8 +12,15 @@ ZSH_AUTOSUGGEST_USE_ASYNC=1
 
 # Clone zcomet if necessary.
 # Keep this above the instant prompt block because first-run bootstrapping may touch the network.
-if [[ ! -f ${ZDOTDIR:-${HOME}}/.zcomet/bin/zcomet.zsh ]]; then
-  command git clone https://github.com/agkozak/zcomet.git ${ZDOTDIR:-${HOME}}/.zcomet/bin
+typeset -g ZCOMET_FILE="${ZDOTDIR:-${HOME}}/.zcomet/bin/zcomet.zsh"
+
+if [[ ! -r "$ZCOMET_FILE" ]]; then
+  if (( $+commands[git] )); then
+    command git clone https://github.com/agkozak/zcomet.git "${ZDOTDIR:-${HOME}}/.zcomet/bin" 2>/dev/null || \
+      print -u2 "warning: unable to bootstrap zcomet; continuing without plugin manager"
+  else
+    print -u2 "warning: git not found; unable to bootstrap zcomet"
+  fi
 fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -24,7 +31,11 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Initialize zcomet
-source ${ZDOTDIR:-${HOME}}/.zcomet/bin/zcomet.zsh
+if [[ -r "$ZCOMET_FILE" ]]; then
+  source "$ZCOMET_FILE"
+else
+  zcomet() { return 0; }
+fi
 
 # Load some plugins
 zcomet load agkozak/zsh-z
@@ -82,9 +93,9 @@ fi
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# You may need to manually set your language environment
+# You may need to manually set your language environment.
+# Avoid LC_ALL globally so category-specific locale settings can still apply.
 export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 export EDITOR='nvim'
@@ -111,7 +122,7 @@ export HISTFILE=$HOME/.zsh_history
 export HISTFILESIZE=50000
 export HISTSIZE=50000
 export HISTTIMEFORMAT="[%F %T] "
-export HISTORY_IGNORE="ls:ll:cd:pwd:exit:clear"
+export HISTORY_IGNORE="(ls|ll|cd *|pwd|exit|clear)"
 
 # PATH
 typeset -U path PATH
@@ -127,6 +138,12 @@ path_prepend() {
 command_exists() {
   (( $+commands[$1] ))
 }
+
+# brew
+export HOMEBREW_NO_ENV_HINTS=1
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
 # Core POSIX/GNU userland replacements
 # (Keep one family active: GNU *or* uutils)
@@ -170,8 +187,15 @@ path_prepend "/opt/homebrew/opt/ssh-copy-id/bin"
 path_prepend "/opt/homebrew/opt/wget/bin"
 
 # Crypto/TLS
-path_prepend "/opt/homebrew/opt/openssl/bin"
-path_prepend "/opt/homebrew/opt/openssl@3/bin"
+# Normalize OpenSSL aliases so only one canonical OpenSSL bin is kept in PATH.
+path=("${(@)path:#/opt/homebrew/opt/openssl/bin}")
+path=("${(@)path:#/opt/homebrew/opt/openssl@3/bin}")
+
+if [[ -d "/opt/homebrew/opt/openssl@3/bin" ]]; then
+  path_prepend "/opt/homebrew/opt/openssl@3/bin"
+elif [[ -d "/opt/homebrew/opt/openssl/bin" ]]; then
+  path_prepend "/opt/homebrew/opt/openssl/bin"
+fi
 
 # File/text helper tools
 path_prepend "/opt/homebrew/opt/binutils/bin"
@@ -195,17 +219,9 @@ path_prepend "/opt/homebrew/opt/postgresql@18/bin"
 path_prepend "/opt/homebrew/opt/redis/bin"
 path_prepend "/opt/homebrew/opt/sqlite/bin"
 
-export PATH
-
-# brew
-export HOMEBREW_NO_ENV_HINTS=1
-if [[ -x /opt/homebrew/bin/brew ]]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-
 # go
 export GOPATH="$HOME/go"
-[[ -d $GOPATH/bin ]] && export PATH="$GOPATH/bin:$PATH"
+[[ -d $GOPATH/bin ]] && path_prepend "$GOPATH/bin"
 
 # pipenv
 export PIPENV_VENV_IN_PROJECT=1
@@ -218,8 +234,8 @@ PIPX_HOME="$HOME/.local/pipx"
 export PYTHON_CFLAGS="-O3 -march=native -mtune=native"
 export PYTHON_CONFIGURE_OPTS="--enable-shared --enable-optimizations --with-lto"
 export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-[[ -d $PYENV_ROOT/shims ]] && export PATH="$PYENV_ROOT/shims:$PATH"
+[[ -d $PYENV_ROOT/bin ]] && path_prepend "$PYENV_ROOT/bin"
+[[ -d $PYENV_ROOT/shims ]] && path_prepend "$PYENV_ROOT/shims"
 
 load_pyenv_stack() {
   [[ -n ${__PYENV_STACK_LOADED:-} ]] && return 0
@@ -309,8 +325,8 @@ fi
 # rbenv
 export RUBY_CFLAGS="-O3 -march=native -mtune=native"
 export RBENV_ROOT="$HOME/.rbenv"
-[[ -d $RBENV_ROOT/bin ]] && export PATH="$RBENV_ROOT/bin:$PATH"
-[[ -d $RBENV_ROOT/shims ]] && export PATH="$RBENV_ROOT/shims:$PATH"
+[[ -d $RBENV_ROOT/bin ]] && path_prepend "$RBENV_ROOT/bin"
+[[ -d $RBENV_ROOT/shims ]] && path_prepend "$RBENV_ROOT/shims"
 
 load_rbenv_stack() {
   [[ -n ${__RBENV_STACK_LOADED:-} ]] && return 0
@@ -360,22 +376,24 @@ if [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]]; then
 fi
 
 # It is good to load these popular plugins last, and in this order:
-zcomet load zsh-users/zsh-syntax-highlighting
 zcomet load zsh-users/zsh-autosuggestions
+zcomet load zsh-users/zsh-syntax-highlighting
 
 # zprof
 
-# Added by Toolbox App
-export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
-
-# Added by Antigravity
-export PATH="/Users/flaviomartins/.antigravity/antigravity/bin:$PATH"
-
 # cargo bin
-export PATH="$HOME/.cargo/bin:$PATH"
+[[ -d "$HOME/.cargo/bin" ]] && path_prepend "$HOME/.cargo/bin"
 
 # local bin
-export PATH="$HOME/.local/bin:$PATH"
+[[ -d "$HOME/.local/bin" ]] && path_prepend "$HOME/.local/bin"
+
+# Added by Toolbox App
+[[ -d "$HOME/Library/Application Support/JetBrains/Toolbox/scripts" ]] && path_prepend "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
+
+# Added by Antigravity
+[[ -d "$HOME/.antigravity/antigravity/bin" ]] && path_prepend "$HOME/.antigravity/antigravity/bin"
+
+export PATH
 
 # Lazy-load conda/mamba to keep interactive startup fast.
 export MAMBA_EXE="$HOME/miniforge3/bin/mamba"
