@@ -166,7 +166,6 @@ path_prepend "/opt/homebrew/opt/grep/libexec/gnubin"
 
 # File/archive/compression
 path_prepend "/opt/homebrew/opt/gnu-tar/libexec/gnubin"
-path_prepend "/opt/homebrew/opt/gzip/bin"
 path_prepend "/opt/homebrew/opt/unzip/bin"
 path_prepend "/opt/homebrew/opt/zip/bin"
 
@@ -174,17 +173,12 @@ path_prepend "/opt/homebrew/opt/zip/bin"
 path_prepend "/opt/homebrew/opt/gnu-time/libexec/gnubin"
 path_prepend "/opt/homebrew/opt/gnu-which/libexec/gnubin"
 path_prepend "/opt/homebrew/opt/make/libexec/gnubin"
-path_prepend "/opt/homebrew/opt/moreutils/bin"
 path_prepend "/opt/homebrew/opt/util-linux/bin"
-path_prepend "/opt/homebrew/opt/watch/bin"
 
 # Networking/transfer
 path_prepend "/opt/homebrew/opt/curl/bin"
 path_prepend "/opt/homebrew/opt/inetutils/libexec/gnubin"
-path_prepend "/opt/homebrew/opt/openssh/bin"
-path_prepend "/opt/homebrew/opt/rsync/bin"
 path_prepend "/opt/homebrew/opt/ssh-copy-id/bin"
-path_prepend "/opt/homebrew/opt/wget/bin"
 
 # Crypto/TLS
 # Normalize OpenSSL aliases so only one canonical OpenSSL bin is kept in PATH.
@@ -199,24 +193,16 @@ fi
 
 # File/text helper tools
 path_prepend "/opt/homebrew/opt/binutils/bin"
-path_prepend "/opt/homebrew/opt/colordiff/bin"
-path_prepend "/opt/homebrew/opt/dos2unix/bin"
 path_prepend "/opt/homebrew/opt/ed/bin"
 path_prepend "/opt/homebrew/opt/file-formula/bin"
 path_prepend "/opt/homebrew/opt/gnu-getopt/bin"
-path_prepend "/opt/homebrew/opt/gpatch/bin"
-path_prepend "/opt/homebrew/opt/wdiff/bin"
 
 # Shell/terminal tools
-path_prepend "/opt/homebrew/opt/bash/bin"
-path_prepend "/opt/homebrew/opt/less/bin"
-path_prepend "/opt/homebrew/opt/nano/bin"
-path_prepend "/opt/homebrew/opt/screen/bin"
+# Commands from bash/less/nano/screen remain available via /opt/homebrew/bin.
 
 # Databases
 path_prepend "/opt/homebrew/opt/mysql@8.0/bin"
 path_prepend "/opt/homebrew/opt/postgresql@18/bin"
-path_prepend "/opt/homebrew/opt/redis/bin"
 path_prepend "/opt/homebrew/opt/sqlite/bin"
 
 # go
