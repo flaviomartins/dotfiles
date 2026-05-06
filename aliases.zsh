@@ -268,6 +268,60 @@ if command_exists yt-dlp; then
 	alias yt='yt-dlp'
 fi
 
+if command_exists wget2; then
+	mirror_wget2() {
+		(( $# >= 1 && $# <= 2 )) || {
+			print -u2 'usage: mirror_wget2 <url> [destination]'
+			return 2
+		}
+
+		local url destination host_and_path path trimmed_path cut_dirs
+		url=${1%/}
+		destination=${2:-.}
+		cut_dirs=0
+
+		host_and_path=${url#*://}
+		if [[ $host_and_path == */* ]]; then
+			path=/${host_and_path#*/}
+		else
+			path=/
+		fi
+
+		trimmed_path=${path#/}
+		trimmed_path=${trimmed_path%/}
+
+		if [[ -n $trimmed_path ]]; then
+			cut_dirs=${#${(@s:/:)trimmed_path}}
+		fi
+
+		command wget2 \
+			--mirror \
+			--no-parent \
+			--continue \
+			--no-host-directories \
+			--cut-dirs="$cut_dirs" \
+			--directory-prefix="$destination" \
+			"$url/"
+	}
+	alias wmirror='mirror_wget2'
+fi
+
+if command_exists lftp; then
+	mirror_lftp() {
+		(( $# >= 1 && $# <= 2 )) || {
+			print -u2 'usage: mirror_lftp <url> [destination]'
+			return 2
+		}
+
+		local url destination
+		url=${1%/}
+		destination=${2:-.}
+
+		command lftp "$url/" -e "set cmd:fail-exit yes; mirror --continue --only-newer --verbose=1 . \"$destination\"; bye"
+	}
+	alias lmirror='mirror_lftp'
+fi
+
 # Honeyman's "idiom" command.
 honey() {
 	local limit
