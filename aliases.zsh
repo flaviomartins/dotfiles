@@ -270,8 +270,16 @@ fi
 
 if command_exists tar; then
 	extract_hadoop_parts() {
+		local concat_mode
+		concat_mode=0
+
+		if (( $# > 0 )) && [[ $1 == --concat ]]; then
+			concat_mode=1
+			shift
+		fi
+
 		(( $# <= 2 )) || {
-			print -u2 'usage: extract_hadoop_parts [pattern] [destination]'
+			print -u2 'usage: extract_hadoop_parts [--concat] [pattern] [destination]'
 			return 2
 		}
 
@@ -292,10 +300,14 @@ if command_exists tar; then
 
 		command mkdir -p -- "$destination" || return
 
-		local file
-		for file in "${sorted_files[@]}"; do
-			command tar -xzf "$file" -C "$destination" || return
-		done
+		if (( concat_mode )); then
+			command cat -- "${sorted_files[@]}" | command tar -xzi -f - -C "$destination" || return
+		else
+			local file
+			for file in "${sorted_files[@]}"; do
+				command tar -xzf "$file" -C "$destination" || return
+			done
+		fi
 	}
 
 	alias hparts='extract_hadoop_parts'
