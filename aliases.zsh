@@ -268,6 +268,39 @@ if command_exists yt-dlp; then
 	alias yt='yt-dlp'
 fi
 
+if command_exists tar; then
+	extract_hadoop_parts() {
+		(( $# <= 2 )) || {
+			print -u2 'usage: extract_hadoop_parts [pattern] [destination]'
+			return 2
+		}
+
+		local pattern destination
+		pattern=${1:-part-*.tar.gz}
+		destination=${2:-.}
+
+		local -a files
+		files=( ${(N)~pattern} )
+
+		(( ${#files} > 0 )) || {
+			print -u2 "no files matching pattern: $pattern"
+			return 1
+		}
+
+		local -a sorted_files
+		sorted_files=( ${(f)"$(printf '%s\n' "${files[@]}" | LC_ALL=C command sort)"} )
+
+		command mkdir -p -- "$destination" || return
+
+		local file
+		for file in "${sorted_files[@]}"; do
+			command tar -xzf "$file" -C "$destination" || return
+		done
+	}
+
+	alias hparts='extract_hadoop_parts'
+fi
+
 if command_exists wget2; then
 	mirror_wget2() {
 		(( $# >= 1 && $# <= 2 )) || {
