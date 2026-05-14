@@ -214,7 +214,7 @@ path_prepend "/opt/homebrew/opt/gnu-getopt/bin"
 # Commands from bash/less/nano/screen remain available via /opt/homebrew/bin.
 
 # Databases
-path_prepend "/opt/homebrew/opt/mysql@8.0/bin"
+path_prepend "/opt/homebrew/opt/mysql-client@8.0/bin/"
 path_prepend "/opt/homebrew/opt/postgresql@18/bin"
 path_prepend "/opt/homebrew/opt/sqlite/bin"
 
