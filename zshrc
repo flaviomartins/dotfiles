@@ -158,69 +158,79 @@ command_exists() {
 
 # brew
 export HOMEBREW_NO_ENV_HINTS=1
+typeset -gi __HOMEBREW_FOUND=0
 if [[ -x /opt/homebrew/bin/brew ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
+  __HOMEBREW_FOUND=1
+elif [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  __HOMEBREW_FOUND=1
+elif command_exists brew; then
+  eval "$(brew shellenv)"
+  __HOMEBREW_FOUND=1
 fi
 
-# Core POSIX/GNU userland replacements
-# (Keep one family active: GNU *or* uutils)
+if (( __HOMEBREW_FOUND )); then
+  # Core POSIX/GNU userland replacements
+  # (Keep one family active: GNU *or* uutils)
 
-# Drop inherited uutils overrides to keep command resolution deterministic.
-path=("${(@)path:#/opt/homebrew/opt/uutils-coreutils/libexec/uubin}")
-path=("${(@)path:#/opt/homebrew/opt/uutils-diffutils/libexec/uubin}")
-path=("${(@)path:#/opt/homebrew/opt/uutils-findutils/libexec/uubin}")
+  # Drop inherited uutils overrides to keep command resolution deterministic.
+  path=("${(@)path:#/opt/homebrew/opt/uutils-coreutils/libexec/uubin}")
+  path=("${(@)path:#/opt/homebrew/opt/uutils-diffutils/libexec/uubin}")
+  path=("${(@)path:#/opt/homebrew/opt/uutils-findutils/libexec/uubin}")
 
-# GNU coreutils/diffutils/findutils (alternative to uutils)
-path_prepend "/opt/homebrew/opt/coreutils/libexec/gnubin"
-# path_prepend "/opt/homebrew/opt/diffutils/libexec/gnubin"
-# path_prepend "/opt/homebrew/opt/findutils/libexec/gnubin"
+  # GNU coreutils/diffutils/findutils (alternative to uutils)
+  path_prepend "/opt/homebrew/opt/coreutils/libexec/gnubin"
+  # path_prepend "/opt/homebrew/opt/diffutils/libexec/gnubin"
+  # path_prepend "/opt/homebrew/opt/findutils/libexec/gnubin"
 
-# Text processing
-path_prepend "/opt/homebrew/opt/gawk/libexec/gnubin"
-path_prepend "/opt/homebrew/opt/gnu-indent/libexec/gnubin"
-path_prepend "/opt/homebrew/opt/gnu-sed/libexec/gnubin"
-path_prepend "/opt/homebrew/opt/grep/libexec/gnubin"
+  # Text processing
+  path_prepend "/opt/homebrew/opt/gawk/libexec/gnubin"
+  path_prepend "/opt/homebrew/opt/gnu-indent/libexec/gnubin"
+  path_prepend "/opt/homebrew/opt/gnu-sed/libexec/gnubin"
+  path_prepend "/opt/homebrew/opt/grep/libexec/gnubin"
 
-# File/archive/compression
-path_prepend "/opt/homebrew/opt/gnu-tar/libexec/gnubin"
-path_prepend "/opt/homebrew/opt/unzip/bin"
-path_prepend "/opt/homebrew/opt/zip/bin"
+  # File/archive/compression
+  path_prepend "/opt/homebrew/opt/gnu-tar/libexec/gnubin"
+  path_prepend "/opt/homebrew/opt/unzip/bin"
+  path_prepend "/opt/homebrew/opt/zip/bin"
 
-# System/build utilities
-path_prepend "/opt/homebrew/opt/gnu-time/libexec/gnubin"
-path_prepend "/opt/homebrew/opt/gnu-which/libexec/gnubin"
-path_prepend "/opt/homebrew/opt/make/libexec/gnubin"
-path_prepend "/opt/homebrew/opt/util-linux/bin"
+  # System/build utilities
+  path_prepend "/opt/homebrew/opt/gnu-time/libexec/gnubin"
+  path_prepend "/opt/homebrew/opt/gnu-which/libexec/gnubin"
+  path_prepend "/opt/homebrew/opt/make/libexec/gnubin"
+  path_prepend "/opt/homebrew/opt/util-linux/bin"
 
-# Networking/transfer
-path_prepend "/opt/homebrew/opt/curl/bin"
-path_prepend "/opt/homebrew/opt/inetutils/libexec/gnubin"
-path_prepend "/opt/homebrew/opt/ssh-copy-id/bin"
+  # Networking/transfer
+  path_prepend "/opt/homebrew/opt/curl/bin"
+  path_prepend "/opt/homebrew/opt/inetutils/libexec/gnubin"
+  path_prepend "/opt/homebrew/opt/ssh-copy-id/bin"
 
-# Crypto/TLS
-# Normalize OpenSSL aliases so only one canonical OpenSSL bin is kept in PATH.
-path=("${(@)path:#/opt/homebrew/opt/openssl/bin}")
-path=("${(@)path:#/opt/homebrew/opt/openssl@3/bin}")
+  # Crypto/TLS
+  # Normalize OpenSSL aliases so only one canonical OpenSSL bin is kept in PATH.
+  path=("${(@)path:#/opt/homebrew/opt/openssl/bin}")
+  path=("${(@)path:#/opt/homebrew/opt/openssl@3/bin}")
 
-if [[ -d "/opt/homebrew/opt/openssl@3/bin" ]]; then
-  path_prepend "/opt/homebrew/opt/openssl@3/bin"
-elif [[ -d "/opt/homebrew/opt/openssl/bin" ]]; then
-  path_prepend "/opt/homebrew/opt/openssl/bin"
+  if [[ -d "/opt/homebrew/opt/openssl@3/bin" ]]; then
+    path_prepend "/opt/homebrew/opt/openssl@3/bin"
+  elif [[ -d "/opt/homebrew/opt/openssl/bin" ]]; then
+    path_prepend "/opt/homebrew/opt/openssl/bin"
+  fi
+
+  # File/text helper tools
+  path_prepend "/opt/homebrew/opt/binutils/bin"
+  path_prepend "/opt/homebrew/opt/ed/bin"
+  path_prepend "/opt/homebrew/opt/file-formula/bin"
+  path_prepend "/opt/homebrew/opt/gnu-getopt/bin"
+
+  # Shell/terminal tools
+  # Commands from bash/less/nano/screen remain available via /opt/homebrew/bin.
+
+  # Databases
+  path_prepend "/opt/homebrew/opt/mysql-client@8.0/bin/"
+  path_prepend "/opt/homebrew/opt/postgresql@18/bin"
+  path_prepend "/opt/homebrew/opt/sqlite/bin"
 fi
-
-# File/text helper tools
-path_prepend "/opt/homebrew/opt/binutils/bin"
-path_prepend "/opt/homebrew/opt/ed/bin"
-path_prepend "/opt/homebrew/opt/file-formula/bin"
-path_prepend "/opt/homebrew/opt/gnu-getopt/bin"
-
-# Shell/terminal tools
-# Commands from bash/less/nano/screen remain available via /opt/homebrew/bin.
-
-# Databases
-path_prepend "/opt/homebrew/opt/mysql-client@8.0/bin/"
-path_prepend "/opt/homebrew/opt/postgresql@18/bin"
-path_prepend "/opt/homebrew/opt/sqlite/bin"
 
 # go
 export GOPATH="$HOME/go"
