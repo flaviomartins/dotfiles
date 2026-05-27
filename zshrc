@@ -78,7 +78,11 @@ typeset -g ZSH_COMPINIT_REFRESH_SECONDS=$((7 * 24 * 60 * 60))
 typeset -gi zcompdump_mtime=0
 
 if [[ -f "$ZSH_COMPDUMP" ]]; then
-  zcompdump_mtime=$(/usr/bin/stat -f '%m' "$ZSH_COMPDUMP" 2>/dev/null)
+  if [[ "$OSTYPE" = darwin* ]]; then
+    zcompdump_mtime=$(/usr/bin/stat -f '%m' "$ZSH_COMPDUMP" 2>/dev/null)
+  else
+    zcompdump_mtime=$(/usr/bin/stat -c '%Y' "$ZSH_COMPDUMP" 2>/dev/null)
+  fi
 fi
 if (( EPOCHSECONDS - zcompdump_mtime > ZSH_COMPINIT_REFRESH_SECONDS )); then
   compinit -d "$ZSH_COMPDUMP"
