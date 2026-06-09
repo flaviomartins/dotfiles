@@ -264,7 +264,7 @@ brew "ripgrep"
 brew "xxhash"
 brew "rsync"
 brew "rubberband"
-brew "ruby"
+brew "ruby", link: false
 brew "ruff"
 brew "rust"
 brew "screen"
