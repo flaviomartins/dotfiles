@@ -475,8 +475,6 @@ brew "orc"
 brew "p7zip"
 # Swiss-army knife of markup format conversion
 brew "pandoc"
-# Perl compatible regular expressions library
-brew "pcre"
 # Highly capable, feature-rich programming language
 brew "perl"
 # Parallel gzip
