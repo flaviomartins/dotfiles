@@ -218,7 +218,6 @@ if (( __HOMEBREW_FOUND )); then
   fi
 
   # File/text helper tools
-  path_prepend "/opt/homebrew/opt/binutils/bin"
   path_prepend "/opt/homebrew/opt/ed/bin"
   path_prepend "/opt/homebrew/opt/file-formula/bin"
   path_prepend "/opt/homebrew/opt/gnu-getopt/bin"

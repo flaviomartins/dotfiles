@@ -172,10 +172,6 @@ if command_exists docker; then
 	alias dcud='docker compose up -d'
 fi
 
-if command_exists lazydocker; then
-	alias ld='lazydocker'
-fi
-
 if command_exists rg; then
 	alias rg='rg --smart-case --hidden --glob !.git/'
 
