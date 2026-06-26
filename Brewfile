@@ -179,8 +179,8 @@ brew "lame"
 brew "libvpx"
 # Audio codec
 brew "opus"
-# Low-level access to audio, keyboard, mouse, joystick, and graphics
-brew "sdl2"
+# SDL2 compatibility layer that uses SDL3 behind the scenes
+brew "sdl2-compat"
 # AV1 encoder
 brew "svt-av1"
 # H.264/AVC encoder
@@ -507,6 +507,8 @@ brew "pyenv-virtualenv"
 brew "pygments"
 # Fastest and safest AV1 video encoder
 brew "rav1e"
+# Install various Ruby versions and implementations
+brew "ruby-build"
 # Ruby version manager
 brew "rbenv"
 # Rsync for cloud storage
@@ -597,6 +599,8 @@ brew "wgcf"
 brew "wget"
 # Successor of GNU Wget, a file and recursive website downloader
 brew "wget2"
+# Program for applying patches with conflicting changes
+brew "wiggle"
 # Simple xargs and apply replacement
 brew "xe"
 # High-performance, high-quality MPEG-4 video library
@@ -614,9 +618,9 @@ brew "zip"
 # UNIX shell (command interpreter)
 brew "zsh"
 # Packer
-brew "hashicorp/tap/packer"
+brew "hashicorp/tap/packer", trusted: true
 # Terraform
-brew "hashicorp/tap/terraform"
+brew "hashicorp/tap/terraform", trusted: true
 # Generate documentation from Terraform modules in various output formats
 brew "terraform-docs/tap/terraform-docs"
 # Webcam & audio device software
@@ -657,6 +661,8 @@ cask "font-cascadia-mono-nf"
 cask "font-fira-code-nerd-font"
 cask "font-fira-mono-nerd-font"
 cask "font-jetbrains-mono-nerd-font"
+# Native client for GitHub Copilot
+cask "github-copilot-app"
 # JetBrains tools manager
 cask "jetbrains-toolbox"
 # Secure video conferencing app
@@ -691,8 +697,6 @@ cask "proton-mail-bridge"
 cask "qlmarkdown"
 # Thumbnails, static previews, cover art and metadata for video files
 cask "quicklook-video"
-# Save articles to read, highlight key content, and organise notes for review
-cask "reader"
 # Import highlights from Apple Books to Readwise
 cask "readwise-ibooks"
 # Font manager that helps preview, install, sync and manage fonts
@@ -730,6 +734,7 @@ vscode "github.codespaces"
 vscode "github.github-vscode-theme"
 vscode "github.vscode-github-actions"
 vscode "github.vscode-pull-request-github"
+vscode "golang.go"
 vscode "mechatroner.rainbow-csv"
 vscode "ms-azuretools.vscode-containers"
 vscode "ms-python.debugpy"
@@ -743,4 +748,6 @@ vscode "ms-toolsai.vscode-jupyter-cell-tags"
 vscode "ms-toolsai.vscode-jupyter-slideshow"
 vscode "ms-vscode-remote.remote-containers"
 vscode "pkief.material-icon-theme"
+go "golang.org/dl/go1.27rc1"
+go "golang.org/x/tools/gopls"
 npm "npm-check-updates"
