@@ -235,6 +235,9 @@ fi
 export GOPATH="$HOME/go"
 [[ -d $GOPATH/bin ]] && path_prepend "$GOPATH/bin"
 
+# cargo
+[[ -d "$HOME/.cargo/bin" ]] && path_prepend "$HOME/.cargo/bin"
+
 # pipenv
 export PIPENV_VENV_IN_PROJECT=1
 
