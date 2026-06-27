@@ -171,7 +171,7 @@ elif command_exists brew; then
 fi
 
 if (( __HOMEBREW_FOUND )); then
-  typeset -g BREW_PREFIX="${HOMEBREW_PREFIX:-$(brew --prefix)}"
+  typeset -g BREW_PREFIX="${HOMEBREW_PREFIX:-${commands[brew]:h:h}}"
 
   # Core POSIX/GNU userland replacements
   # (Keep one family active: GNU *or* uutils)
