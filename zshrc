@@ -171,6 +171,7 @@ elif command_exists brew; then
 fi
 
 if (( __HOMEBREW_FOUND )); then
+  # Prefer Homebrew's exported prefix; otherwise derive it from brew's absolute path.
   typeset -g BREW_PREFIX="${HOMEBREW_PREFIX:-${commands[brew]:h:h}}"
 
   # Core POSIX/GNU userland replacements
