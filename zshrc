@@ -159,20 +159,24 @@ command_exists() {
 # brew
 export HOMEBREW_NO_ENV_HINTS=1
 typeset -gi __HOMEBREW_FOUND=0
+typeset -g __HOMEBREW_BREW_BIN=""
 if [[ -x /opt/homebrew/bin/brew ]]; then
+  __HOMEBREW_BREW_BIN="/opt/homebrew/bin/brew"
   eval "$(/opt/homebrew/bin/brew shellenv)"
   __HOMEBREW_FOUND=1
 elif [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]; then
+  __HOMEBREW_BREW_BIN="/home/linuxbrew/.linuxbrew/bin/brew"
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   __HOMEBREW_FOUND=1
 elif command_exists brew; then
+  __HOMEBREW_BREW_BIN="${commands[brew]}"
   eval "$(brew shellenv)"
   __HOMEBREW_FOUND=1
 fi
 
 if (( __HOMEBREW_FOUND )); then
   # Prefer Homebrew's exported prefix; otherwise derive it from brew's absolute path.
-  typeset -g BREW_PREFIX="${HOMEBREW_PREFIX:-${commands[brew]:h:h}}"
+  typeset -g BREW_PREFIX="${HOMEBREW_PREFIX:-${__HOMEBREW_BREW_BIN:h:h}}"
 
   # Core POSIX/GNU userland replacements
   # (Keep one family active: GNU *or* uutils)
