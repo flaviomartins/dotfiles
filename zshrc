@@ -152,6 +152,15 @@ path_prepend_optional() {
   fi
 }
 
+# Prefer libexec/gnubin (macOS Homebrew) but fall back to bin (Linux Homebrew).
+path_prepend_gnu() {
+  if [[ -d "$1/libexec/gnubin" ]]; then
+    path_prepend "$1/libexec/gnubin"
+  else
+    path_prepend "$1/bin"
+  fi
+}
+
 command_exists() {
   (( $+commands[$1] ))
 }
@@ -187,30 +196,30 @@ if (( __HOMEBREW_FOUND )); then
   path=("${(@)path:#${BREW_PREFIX}/opt/uutils-findutils/libexec/uubin}")
 
   # GNU coreutils/diffutils/findutils (alternative to uutils)
-  path_prepend "$BREW_PREFIX/opt/coreutils/libexec/gnubin"
-  # path_prepend "$BREW_PREFIX/opt/diffutils/libexec/gnubin"
-  # path_prepend "$BREW_PREFIX/opt/findutils/libexec/gnubin"
+  path_prepend_gnu "$BREW_PREFIX/opt/coreutils"
+  # path_prepend_gnu "$BREW_PREFIX/opt/diffutils"
+  # path_prepend_gnu "$BREW_PREFIX/opt/findutils"
 
   # Text processing
-  path_prepend "$BREW_PREFIX/opt/gawk/libexec/gnubin"
-  path_prepend "$BREW_PREFIX/opt/gnu-indent/libexec/gnubin"
-  path_prepend "$BREW_PREFIX/opt/gnu-sed/libexec/gnubin"
-  path_prepend "$BREW_PREFIX/opt/grep/libexec/gnubin"
+  path_prepend_gnu "$BREW_PREFIX/opt/gawk"
+  path_prepend_gnu "$BREW_PREFIX/opt/gnu-indent"
+  path_prepend_gnu "$BREW_PREFIX/opt/gnu-sed"
+  path_prepend_gnu "$BREW_PREFIX/opt/grep"
 
   # File/archive/compression
-  path_prepend "$BREW_PREFIX/opt/gnu-tar/libexec/gnubin"
+  path_prepend_gnu "$BREW_PREFIX/opt/gnu-tar"
   path_prepend "$BREW_PREFIX/opt/unzip/bin"
   path_prepend "$BREW_PREFIX/opt/zip/bin"
 
   # System/build utilities
-  path_prepend "$BREW_PREFIX/opt/gnu-time/libexec/gnubin"
-  path_prepend "$BREW_PREFIX/opt/gnu-which/libexec/gnubin"
-  path_prepend "$BREW_PREFIX/opt/make/libexec/gnubin"
+  path_prepend_gnu "$BREW_PREFIX/opt/gnu-time"
+  path_prepend_gnu "$BREW_PREFIX/opt/gnu-which"
+  path_prepend_gnu "$BREW_PREFIX/opt/make"
   path_prepend "$BREW_PREFIX/opt/util-linux/bin"
 
   # Networking/transfer
   path_prepend "$BREW_PREFIX/opt/curl/bin"
-  path_prepend "$BREW_PREFIX/opt/inetutils/libexec/gnubin"
+  path_prepend_gnu "$BREW_PREFIX/opt/inetutils"
   path_prepend "$BREW_PREFIX/opt/ssh-copy-id/bin"
 
   # Crypto/TLS
