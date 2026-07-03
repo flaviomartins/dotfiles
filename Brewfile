@@ -1,6 +1,4 @@
 tap "buo/cask-upgrade", trusted: true
-tap "hashicorp/tap", trusted: true
-tap "terraform-docs/tap", trusted: true
 # Perceptual video quality assessment based on multi-method fusion
 brew "libvmaf"
 # Codec library for encoding and decoding AV1 video streams
@@ -617,12 +615,6 @@ brew "zimg"
 brew "zip"
 # UNIX shell (command interpreter)
 brew "zsh"
-# Packer
-brew "hashicorp/tap/packer", trusted: true
-# Terraform
-brew "hashicorp/tap/terraform", trusted: true
-# Generate documentation from Terraform modules in various output formats
-brew "terraform-docs/tap/terraform-docs"
 # Webcam & audio device software
 cask "ankerwork"
 # Universal chat app powered by Matrix
@@ -750,5 +742,7 @@ vscode "ms-vscode-remote.remote-containers"
 vscode "pkief.material-icon-theme"
 go "golang.org/dl/go1.27rc1"
 go "golang.org/x/tools/gopls"
+go "github.com/flaviomartins/ssecat/cmd/ssecat"
+go "github.com/flaviomartins/tuniq/cmd/tuniq"
 cargo "cargo-cache"
 npm "npm-check-updates"
