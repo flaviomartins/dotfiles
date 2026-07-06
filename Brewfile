@@ -699,8 +699,6 @@ cask "thunderbird"
 cask "thunderbird@beta"
 # Control your data usage on slow or expensive networks
 cask "tripmode"
-# Email client
-cask "tuta-mail"
 # License free Wi-Fi, VPN, and Access Application for Organizations
 cask "unifi-identity-endpoint"
 # OpenVPN client with AppleScript support
@@ -744,5 +742,4 @@ go "golang.org/dl/go1.27rc1"
 go "golang.org/x/tools/gopls"
 go "github.com/flaviomartins/ssecat/cmd/ssecat"
 go "github.com/flaviomartins/tuniq/cmd/tuniq"
-cargo "cargo-cache"
 npm "npm-check-updates"
