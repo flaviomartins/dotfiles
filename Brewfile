@@ -119,12 +119,16 @@ brew "libnghttp2"
 brew "curl"
 # AV1 decoder targeted to be small and fast
 brew "dav1d"
+# Library and utilities for processing GIFs
+brew "giflib"
 # JPEG image codec that aids compression and decompression
 brew "jpeg-turbo"
 # TIFF library and utilities
 brew "libtiff"
 # Color management engine supporting ICC profiles
 brew "little-cms2"
+# Image format providing lossless and lossy compression for web images
+brew "webp"
 # Good-lookin' diffs with diff-highlight and more
 brew "diff-so-fancy"
 # Diff that understands syntax
@@ -171,6 +175,8 @@ brew "entr"
 brew "eza"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
+# MP3 player for Linux and UNIX
+brew "mpg123"
 # High quality MPEG Audio Layer III (MP3) encoder
 brew "lame"
 # VP8/VP9 video codec
@@ -227,8 +233,6 @@ brew "gdk-pixbuf"
 brew "geoipupdate"
 # GitHub command-line tool
 brew "gh"
-# Library and utilities for processing GIFs
-brew "giflib"
 # Smart font renderer for non-Roman scripts
 brew "graphite2"
 # OpenType text shaping engine
@@ -237,8 +241,6 @@ brew "harfbuzz"
 brew "jbig2dec"
 # Library for JPEG-2000 image manipulation
 brew "openjpeg"
-# Image format providing lossless and lossy compression for web images
-brew "webp"
 # Image processing and image analysis library
 brew "leptonica"
 # Secure hashing function
@@ -383,8 +385,6 @@ brew "librist"
 brew "libsamplerate"
 # Vorbis general audio compression codec
 brew "libvorbis"
-# MP3 player for Linux and UNIX
-brew "mpg123"
 # C library for files containing sampled sound
 brew "libsndfile"
 # NaCl networking and cryptography library
@@ -738,7 +738,8 @@ vscode "ms-toolsai.vscode-jupyter-slideshow"
 vscode "ms-vscode-remote.remote-containers"
 vscode "ms-vscode.makefile-tools"
 vscode "pkief.material-icon-theme"
-go "golang.org/dl/go1.27rc1"
+go "golang.org/x/perf/cmd/benchstat"
+go "golang.org/dl/go1.27rc2"
 go "golang.org/x/tools/gopls"
 go "github.com/flaviomartins/ssecat/cmd/ssecat"
 go "github.com/flaviomartins/tuniq/cmd/tuniq"
