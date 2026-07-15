@@ -122,7 +122,7 @@ setopt hist_save_no_dups
 setopt hist_ignore_space
 setopt hist_verify
 setopt interactivecomments
-export HISTFILE=$HOME/.zsh_history
+export HISTFILE=~/.zsh_history
 export HISTFILESIZE=50000
 export HISTSIZE=50000
 export HISTTIMEFORMAT="[%F %T] "
