@@ -262,8 +262,8 @@ PIPX_HOME="$HOME/.local/pipx"
 [[ -d $PIPX_HOME ]] && export PIPX_HOME
 
 # pyenv
-export PYTHON_CFLAGS="-O3 -march=native -mtune=native"
-export PYTHON_CONFIGURE_OPTS="--enable-shared --enable-optimizations --with-lto"
+export PYTHON_CFLAGS="-O2 -march=native -mtune=native -flto"
+export PYTHON_CONFIGURE_OPTS="--enable-shared --enable-optimizations"
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && path_prepend "$PYENV_ROOT/bin"
 [[ -d $PYENV_ROOT/shims ]] && path_prepend "$PYENV_ROOT/shims"
