@@ -679,10 +679,6 @@ cask "onyx"
 cask "pearcleaner"
 # Used to access context-specific actions when text is selected
 cask "popclip"
-# Client for Proton Drive
-cask "proton-drive"
-# Client for Proton Mail and Proton Calendar
-cask "proton-mail"
 # Bridges Proton Mail to email clients supporting IMAP and SMTP protocols
 cask "proton-mail-bridge"
 # Quick Look generator for Markdown files
@@ -701,8 +697,6 @@ cask "thunderbird@beta"
 cask "tripmode"
 # License free Wi-Fi, VPN, and Access Application for Organizations
 cask "unifi-identity-endpoint"
-# OpenVPN client with AppleScript support
-cask "viscosity"
 # Open-source code editor
 cask "visual-studio-code"
 # Multimedia player
