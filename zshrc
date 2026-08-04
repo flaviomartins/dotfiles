@@ -166,6 +166,7 @@ command_exists() {
 }
 
 # brew
+export HOMEBREW_NO_ASK=1
 export HOMEBREW_NO_ENV_HINTS=1
 typeset -gi __HOMEBREW_FOUND=0
 typeset -g __HOMEBREW_BREW_BIN=""
