@@ -424,7 +424,6 @@ load_sdkman() {
 
   unset -f sdk 2>/dev/null
   source "$SDKMAN_DIR/bin/sdkman-init.sh"
-  sdkman_add_current_bins
   typeset -g __SDKMAN_LOADED=1
 }
 
