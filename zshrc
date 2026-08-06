@@ -131,8 +131,19 @@ export HISTORY_IGNORE="(ls|ll|cd *|pwd|exit|clear)"
 # PATH
 typeset -U path PATH
 
+path_contains() {
+  local entry
+  for entry in "${path[@]}"; do
+    [[ "$entry" == "$1" ]] && return 0
+  done
+  return 1
+}
+
 path_prepend() {
   if [[ -d "$1" ]]; then
+    if path_contains "$1"; then
+      return 0
+    fi
     path=("$1" $path)
   else
     print -u2 "warning: PATH entry does not exist: $1"
@@ -382,13 +393,24 @@ fi
 export SDKMAN_DIR="$HOME/.sdkman"
 
 sdkman_add_current_bins() {
-  local candidate_dir current_bin
+  local candidate_dir version_dir current_bin
 
   [[ -d "$SDKMAN_DIR/candidates" ]] || return 0
 
-  for candidate_dir in "$SDKMAN_DIR"/candidates/*(N); do
+  for candidate_dir in "$SDKMAN_DIR"/candidates/*(/N); do
+    [[ -d "$candidate_dir" ]] || continue
+
     current_bin="$candidate_dir/current/bin"
-    [[ -d $current_bin ]] && path_prepend "$current_bin"
+    if [[ -d "$current_bin" ]]; then
+      path_prepend "$current_bin"
+      continue
+    fi
+
+    for version_dir in "$candidate_dir"/*(/N); do
+      [[ -d "$version_dir/bin" ]] || continue
+      path_prepend "$version_dir/bin"
+      break
+    done
   done
 }
 
@@ -398,10 +420,9 @@ load_sdkman() {
 
   unset -f sdk 2>/dev/null
   source "$SDKMAN_DIR/bin/sdkman-init.sh"
+  sdkman_add_current_bins
   typeset -g __SDKMAN_LOADED=1
 }
-
-sdkman_add_current_bins
 
 if [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]]; then
   sdk() { load_sdkman && sdk "$@"; }
