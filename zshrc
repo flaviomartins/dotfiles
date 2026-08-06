@@ -414,6 +414,10 @@ sdkman_add_current_bins() {
   done
 }
 
+# Make current SDKMAN candidate binaries (e.g. mvn, java, gradle) available
+# even before the full SDKMAN init script is loaded.
+sdkman_add_current_bins
+
 load_sdkman() {
   [[ -n ${__SDKMAN_LOADED:-} ]] && return 0
   [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] || return 1
