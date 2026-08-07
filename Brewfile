@@ -653,6 +653,7 @@ cask "font-cascadia-mono-nf"
 cask "font-fira-code-nerd-font"
 cask "font-fira-mono-nerd-font"
 cask "font-jetbrains-mono-nerd-font"
+cask "font-literata"
 # Native client for GitHub Copilot
 cask "github-copilot-app"
 # JetBrains tools manager
