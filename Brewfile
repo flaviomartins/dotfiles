@@ -281,6 +281,8 @@ brew "gnu-which"
 brew "gnupg"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
+# Go version management inspired by pyenv
+brew "goenv"
 # Apply a diff file to an original
 brew "gpatch"
 # GNU grep, egrep and fgrep

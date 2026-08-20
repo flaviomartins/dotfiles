@@ -259,6 +259,28 @@ if (( __HOMEBREW_FOUND )); then
   path_prepend "$BREW_PREFIX/opt/sqlite/bin"
 fi
 
+# goenv
+export GOENV_ROOT="$HOME/.goenv"
+
+load_goenv_stack() {
+  [[ -n ${__GOENV_STACK_LOADED:-} ]] && return 0
+
+  unset -f goenv 2>/dev/null
+
+  if command_exists goenv; then
+    eval "$(command goenv init -)"
+    typeset -g __GOENV_STACK_LOADED=1
+    return 0
+  fi
+
+  return 1
+}
+
+if command_exists goenv; then
+  [[ -d "$GOENV_ROOT/shims" ]] && path_prepend "$GOENV_ROOT/shims"
+  goenv() { load_goenv_stack && goenv "$@"; }
+fi
+
 # go
 export GOPATH="$HOME/go"
 [[ -d $GOPATH/bin ]] && path_prepend "$GOPATH/bin"
