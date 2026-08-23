@@ -277,6 +277,9 @@ load_goenv_stack() {
 }
 
 if command_exists goenv; then
+  typeset -g __GOENV_BIN_DIR="${commands[goenv]:h}"
+  path=(${(@)path:#$__GOENV_BIN_DIR})
+  path_prepend "$__GOENV_BIN_DIR"
   [[ -d "$GOENV_ROOT/shims" ]] && path_prepend "$GOENV_ROOT/shims"
   goenv() { load_goenv_stack && goenv "$@"; }
 fi
