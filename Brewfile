@@ -281,7 +281,7 @@ brew "gnu-which"
 brew "gnupg"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
-# Go version management inspired by pyenv
+# Go version management
 brew "goenv"
 # Apply a diff file to an original
 brew "gpatch"
@@ -692,6 +692,8 @@ cask "quicklook-video"
 cask "readwise-ibooks"
 # Font manager that helps preview, install, sync and manage fonts
 cask "rightfont"
+# Helper application for Things
+cask "thingsmacsandboxhelper"
 # Customizable email client
 cask "thunderbird"
 # Customizable email client
@@ -736,7 +738,6 @@ vscode "ms-vscode-remote.remote-containers"
 vscode "ms-vscode.makefile-tools"
 vscode "pkief.material-icon-theme"
 go "golang.org/x/perf/cmd/benchstat"
-go "golang.org/dl/go1.27rc2"
 go "golang.org/x/tools/gopls"
 go "github.com/flaviomartins/ssecat/cmd/ssecat"
 go "github.com/flaviomartins/tuniq/cmd/tuniq"
