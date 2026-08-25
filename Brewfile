@@ -125,10 +125,10 @@ brew "giflib"
 brew "jpeg-turbo"
 # TIFF library and utilities
 brew "libtiff"
-# Color management engine supporting ICC profiles
-brew "little-cms2"
 # Image format providing lossless and lossy compression for web images
 brew "webp"
+# Color management engine supporting ICC profiles
+brew "little-cms2"
 # Good-lookin' diffs with diff-highlight and more
 brew "diff-so-fancy"
 # Diff that understands syntax
@@ -163,10 +163,8 @@ brew "nettle"
 brew "p11-kit"
 # GNU Transport Layer Security (TLS) Library
 brew "gnutls"
-# Asynchronous event library
-brew "libevent"
-# Validating, recursive, caching DNS resolver
-brew "unbound"
+# Incremental parsing library
+brew "tree-sitter"
 # GNU Emacs text editor
 brew "emacs"
 # Run arbitrary commands when files change
@@ -285,6 +283,12 @@ brew "go"
 brew "goenv"
 # Apply a diff file to an original
 brew "gpatch"
+# Asynchronous event library
+brew "libevent"
+# Validating, recursive, caching DNS resolver
+brew "unbound"
+# Ping, but with a graph
+brew "gping"
 # GNU grep, egrep and fgrep
 brew "grep"
 # Make JSON greppable
@@ -344,7 +348,7 @@ brew "qpdf"
 # Alternative to the official immich-CLI command written in Go
 brew "immich-go"
 # GNU utilities for networking
-brew "inetutils"
+brew "inetutils", link: false
 # Official CLI for the IPinfo IP Address API
 brew "ipinfo-cli"
 # C library for encoding, decoding, and manipulating JSON
@@ -437,8 +441,6 @@ brew "mysql-client@8.4"
 brew "nano"
 # NCurses Disk Usage
 brew "ncdu"
-# Incremental parsing library
-brew "tree-sitter"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Port scanning utility for large networks
@@ -666,6 +668,8 @@ cask "jitsi-meet"
 cask "kekaexternalhelper"
 # Full TeX Live distribution with GUI applications
 cask "mactex"
+# Minimal installer for conda specific to conda-forge
+cask "miniforge"
 # Desktop sync client for Nextcloud software products
 cask "nextcloud"
 # Official Nextcloud Talk Desktop client
