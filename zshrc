@@ -282,6 +282,9 @@ if command_exists goenv; then
   path_prepend "$__GOENV_BIN_DIR"
   [[ -d "$GOENV_ROOT/shims" ]] && path_prepend "$GOENV_ROOT/shims"
   goenv() { load_goenv_stack && goenv "$@"; }
+  # goenv's shims exec back into the "goenv" binary; force init (and PATH
+  # normalization) to run before the shim so it can always find it.
+  go() { load_goenv_stack && command go "$@"; }
 fi
 
 # go
