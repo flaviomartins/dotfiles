@@ -664,8 +664,6 @@ cask "jitsi-meet"
 cask "kekaexternalhelper"
 # Full TeX Live distribution with GUI applications
 cask "mactex"
-# Minimal installer for conda specific to conda-forge
-cask "miniforge"
 # Desktop sync client for Nextcloud software products
 cask "nextcloud"
 # Official Nextcloud Talk Desktop client
