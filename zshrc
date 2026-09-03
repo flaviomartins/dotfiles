@@ -440,41 +440,27 @@ path_prepend_optional "$HOME/.antigravity/antigravity/bin"
 export PATH
 
 # Lazy-load conda/mamba to keep interactive startup fast.
-export MAMBA_EXE="$HOME/miniforge3/bin/mamba"
+export _CONDA_ROOT="$HOME/miniforge3"
 export MAMBA_ROOT_PREFIX="$HOME/miniforge3"
 
 load_conda_stack() {
   [[ -n ${__CONDA_STACK_LOADED:-} ]] && return 0
 
-  local conda_bin="$HOME/miniforge3/bin/conda"
-  local __conda_setup __mamba_setup
-
   unset -f conda mamba 2>/dev/null
 
-  if [[ -x $conda_bin ]]; then
-    if __conda_setup="$("$conda_bin" shell.zsh hook 2> /dev/null)"; then
-      eval "$__conda_setup"
-    elif [[ -f "$HOME/miniforge3/etc/profile.d/conda.sh" ]]; then
-      . "$HOME/miniforge3/etc/profile.d/conda.sh"
-    else
-      path_prepend "$HOME/miniforge3/bin"
-    fi
+  if [[ -f "$_CONDA_ROOT/etc/profile.d/conda.sh" ]]; then
+    . "$_CONDA_ROOT/etc/profile.d/conda.sh"
   fi
 
-  if [[ -x $MAMBA_EXE ]]; then
-    if __mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"; then
-      eval "$__mamba_setup"
-    else
-      mamba() {
-        "$MAMBA_EXE" "$@"
-      }
-    fi
+  if [[ -f "$_CONDA_ROOT/etc/profile.d/mamba.sh" ]]; then
+    . "$_CONDA_ROOT/etc/profile.d/mamba.sh"
   fi
 
   typeset -g __CONDA_STACK_LOADED=1
+  return 0
 }
 
-if [[ -x "$HOME/miniforge3/bin/conda" || -x "$MAMBA_EXE" ]]; then
+if [[ -x "$_CONDA_ROOT/bin/conda" || -x "$_CONDA_ROOT/bin/mamba" ]]; then
   conda() { load_conda_stack && conda "$@"; }
   mamba() { load_conda_stack && mamba "$@"; }
 fi
