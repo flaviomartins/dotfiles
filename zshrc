@@ -199,15 +199,7 @@ if (( __HOMEBREW_FOUND )); then
   # Prefer Homebrew's exported prefix; otherwise derive it from brew's absolute path.
   typeset -g BREW_PREFIX="${HOMEBREW_PREFIX:-${__HOMEBREW_BREW_BIN:h:h}}"
 
-  # Core POSIX/GNU userland replacements
-  # (Keep one family active: GNU *or* uutils)
-
-  # Drop inherited uutils overrides to keep command resolution deterministic.
-  path=("${(@)path:#${BREW_PREFIX}/opt/uutils-coreutils/libexec/uubin}")
-  path=("${(@)path:#${BREW_PREFIX}/opt/uutils-diffutils/libexec/uubin}")
-  path=("${(@)path:#${BREW_PREFIX}/opt/uutils-findutils/libexec/uubin}")
-
-  # GNU coreutils/diffutils/findutils (alternative to uutils)
+  # GNU coreutils/diffutils/findutils
   path_prepend_gnu "$BREW_PREFIX/opt/coreutils"
   # path_prepend_gnu "$BREW_PREFIX/opt/diffutils"
   # path_prepend_gnu "$BREW_PREFIX/opt/findutils"
@@ -231,7 +223,6 @@ if (( __HOMEBREW_FOUND )); then
 
   # Networking/transfer
   path_prepend "$BREW_PREFIX/opt/curl/bin"
-  path_prepend_gnu "$BREW_PREFIX/opt/inetutils"
   path_prepend "$BREW_PREFIX/opt/ssh-copy-id/bin"
 
   # Crypto/TLS
@@ -257,34 +248,6 @@ if (( __HOMEBREW_FOUND )); then
   path_prepend "$BREW_PREFIX/opt/mysql-client@8.0/bin/"
   path_prepend "$BREW_PREFIX/opt/postgresql@18/bin"
   path_prepend "$BREW_PREFIX/opt/sqlite/bin"
-fi
-
-# goenv
-export GOENV_ROOT="$HOME/.goenv"
-
-load_goenv_stack() {
-  [[ -n ${__GOENV_STACK_LOADED:-} ]] && return 0
-
-  unset -f goenv 2>/dev/null
-
-  if command_exists goenv; then
-    eval "$(command goenv init -)"
-    typeset -g __GOENV_STACK_LOADED=1
-    return 0
-  fi
-
-  return 1
-}
-
-if command_exists goenv; then
-  typeset -g __GOENV_BIN_DIR="${commands[goenv]:h}"
-  path=(${(@)path:#$__GOENV_BIN_DIR})
-  path_prepend "$__GOENV_BIN_DIR"
-  [[ -d "$GOENV_ROOT/shims" ]] && path_prepend "$GOENV_ROOT/shims"
-  goenv() { load_goenv_stack && goenv "$@"; }
-  # goenv's shims exec back into the "goenv" binary; force init (and PATH
-  # normalization) to run before the shim so it can always find it.
-  go() { load_goenv_stack && command go "$@"; }
 fi
 
 # go

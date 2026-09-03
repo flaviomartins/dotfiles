@@ -279,14 +279,8 @@ brew "gnu-which"
 brew "gnupg"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
-# Go version management
-brew "goenv"
 # Apply a diff file to an original
 brew "gpatch"
-# Asynchronous event library
-brew "libevent"
-# Validating, recursive, caching DNS resolver
-brew "unbound"
 # Ping, but with a graph
 brew "gping"
 # GNU grep, egrep and fgrep
@@ -347,8 +341,6 @@ brew "pillow"
 brew "qpdf"
 # Alternative to the official immich-CLI command written in Go
 brew "immich-go"
-# GNU utilities for networking
-brew "inetutils", link: false
 # Official CLI for the IPinfo IP Address API
 brew "ipinfo-cli"
 # C library for encoding, decoding, and manipulating JSON
@@ -379,6 +371,8 @@ brew "libunibreak"
 brew "libass"
 # Blu-Ray disc playback library for media players like VLC
 brew "libbluray"
+# Asynchronous event library
+brew "libevent"
 # EXIF parsing library
 brew "libexif"
 # Library for large linear classification
@@ -575,6 +569,8 @@ brew "tree-sitter-cli"
 brew "trippy"
 # Displays Timezone differences with localtime in CLI (shell script)
 brew "tzdiff"
+# Validating, recursive, caching DNS resolver
+brew "unbound"
 # Extraction utility for .zip compressed archives
 brew "unzip"
 # Collection of Linux utilities
@@ -680,8 +676,6 @@ cask "ngrok"
 cask "obsidian"
 # Visual communication software
 cask "omnigraffle"
-# Verify system files structure, run miscellaneous maintenance and more
-cask "onyx"
 # Utility to uninstall apps and remove leftover files from old/uninstalled apps
 cask "pearcleaner"
 # Used to access context-specific actions when text is selected
