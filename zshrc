@@ -434,9 +434,6 @@ path_prepend_optional "$HOME/.cargo/bin"
 # local bin
 path_prepend_optional "$HOME/.local/bin"
 
-# Added by Toolbox App
-path_prepend_optional "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
-
 # Added by Antigravity
 path_prepend_optional "$HOME/.antigravity/antigravity/bin"
 
