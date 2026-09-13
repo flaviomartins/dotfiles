@@ -656,6 +656,8 @@ cask "font-jetbrains-mono-nerd-font"
 cask "font-literata"
 # Native client for GitHub Copilot
 cask "github-copilot-app"
+# Homebrew's official GUI
+cask "homebrew-app"
 # JetBrains tools manager
 cask "jetbrains-toolbox"
 # Secure video conferencing app
@@ -731,6 +733,8 @@ vscode "ms-toolsai.jupyter-renderers"
 vscode "ms-toolsai.vscode-jupyter-cell-tags"
 vscode "ms-toolsai.vscode-jupyter-slideshow"
 vscode "ms-vscode-remote.remote-containers"
+vscode "ms-vscode.cmake-tools"
+vscode "ms-vscode.cpp-devtools"
 vscode "ms-vscode.makefile-tools"
 vscode "pkief.material-icon-theme"
 go "golang.org/x/perf/cmd/benchstat"
