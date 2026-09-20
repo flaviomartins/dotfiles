@@ -39,8 +39,6 @@ brew "awscli"
 brew "ncurses"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
-# Programmable completion for Bash 3.2
-brew "bash-completion"
 # C library of Git core methods that is re-entrant and linkable
 brew "libgit2"
 # Regular expressions library
@@ -513,8 +511,6 @@ brew "rclone"
 brew "rcm"
 # Persistent key-value database, with built-in net interface
 brew "redis"
-# Perl-powered file rename script with many helpful built-ins
-brew "rename"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Extremely fast non-cryptographic hash algorithm
@@ -686,6 +682,8 @@ cask "proton-mail-bridge"
 cask "qlmarkdown"
 # Thumbnails, static previews, cover art and metadata for video files
 cask "quicklook-video"
+# Save articles to read, highlight key content, and organise notes for review
+cask "reader"
 # Import highlights from Apple Books to Readwise
 cask "readwise-ibooks"
 # Font manager that helps preview, install, sync and manage fonts
