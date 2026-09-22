@@ -20,7 +20,7 @@ brew "libpng"
 # Library for ARIB STD-B24, decoding JIS 8 bit characters and parsing MPEG-TS
 brew "aribb24"
 # Improved shell history for zsh, bash, fish and nushell
-brew "atuin"
+brew "atuin", restart_service: :changed
 # Macro processing language
 brew "m4"
 # Automatic configure script builder
