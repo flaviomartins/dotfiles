@@ -39,7 +39,6 @@ fi
 
 # Load some plugins
 zcomet load agkozak/zsh-z
-zcomet load atuinsh/atuin
 
 # direnv plugin settings
 zstyle :omz:plugins:direnv mode export
@@ -425,6 +424,16 @@ fi
 # It is good to load these popular plugins last, and in this order:
 zcomet load zsh-users/zsh-autosuggestions
 zcomet load zsh-users/zsh-syntax-highlighting
+
+if (( $+commands[atuin] )); then
+  autoload -Uz add-zsh-hook
+  _load_atuin() {
+    add-zsh-hook -d precmd _load_atuin
+    eval "$(atuin init zsh)"
+    unfunction _load_atuin
+  }
+  add-zsh-hook precmd _load_atuin
+fi
 
 # zprof
 
