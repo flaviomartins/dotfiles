@@ -5,8 +5,6 @@ brew "libvmaf"
 brew "aom"
 # Mozilla CA certificate store
 brew "ca-certificates"
-# Cryptography and SSL/TLS Toolkit
-brew "openssl@3"
 # C library implementing the SSH2 protocol
 brew "libssh2"
 # Library for command-line editing
@@ -43,6 +41,8 @@ brew "bash"
 brew "libgit2"
 # Regular expressions library
 brew "oniguruma"
+# Cryptography and SSL/TLS Toolkit
+brew "openssl@3"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # High performance key/value database
@@ -117,6 +117,8 @@ brew "libnghttp2"
 brew "curl"
 # AV1 decoder targeted to be small and fast
 brew "dav1d"
+# Computes the SHA1 hash of schema and content of a SQLite database
+brew "dbhash"
 # Library and utilities for processing GIFs
 brew "giflib"
 # JPEG image codec that aids compression and decompression
@@ -710,6 +712,7 @@ cask "zoom"
 cask "zotero"
 # Desktop client for the Zulip team chat platform
 cask "zulip"
+vscode "anthropic.claude-code"
 vscode "bruno-api-client.bruno"
 vscode "davidanson.vscode-markdownlint"
 vscode "dbaeumer.vscode-eslint"
@@ -734,6 +737,8 @@ vscode "ms-vscode-remote.remote-containers"
 vscode "ms-vscode.cmake-tools"
 vscode "ms-vscode.cpp-devtools"
 vscode "ms-vscode.makefile-tools"
+vscode "openai.chatgpt"
+vscode "openai.codex-audio"
 vscode "pkief.material-icon-theme"
 go "golang.org/x/perf/cmd/benchstat"
 go "golang.org/x/tools/gopls"
