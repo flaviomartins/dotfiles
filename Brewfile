@@ -543,16 +543,14 @@ brew "speex"
 brew "sqldiff"
 # SQL linter and auto-formatter for Humans
 brew "sqlfluff"
-# Tool Command Language
-brew "tcl-tk"
-# Analyze how space is allocated inside an SQLite file
-brew "sqlite-analyzer"
 # SQLite remote copy tool
 brew "sqlite-rsync"
 # Secure Reliable Transport
 brew "srt"
 # Add a public key to a remote machine's authorized_keys file
 brew "ssh-copy-id"
+# Tool Command Language
+brew "tcl-tk"
 # Enables extra languages support for Tesseract
 brew "tesseract-lang"
 # Tool which checks for the support of TLS/SSL ciphers and flaws
