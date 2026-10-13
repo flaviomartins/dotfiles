@@ -135,8 +135,6 @@ brew "diff-so-fancy"
 brew "difftastic"
 # File comparison utilities
 brew "diffutils"
-# Load/unload environment variables based on $PWD
-brew "direnv"
 # Recursive piecewise hashing tool
 brew "ssdeep"
 # Test domains for typo squatting, phishing and corporate espionage
@@ -277,8 +275,6 @@ brew "gnu-time"
 brew "gnu-which"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
-# Open source programming language to build simple/reliable/efficient software
-brew "go"
 # Apply a diff file to an original
 brew "gpatch"
 # Ping, but with a graph
@@ -409,6 +405,8 @@ brew "make"
 brew "mbedtls"
 # Memory profiler for Python applications
 brew "memray"
+# Small build system for use with gyp or CMake
+brew "ninja"
 # Fast and user friendly build system
 brew "meson"
 # High performance static file server
@@ -475,10 +473,6 @@ brew "pandoc"
 brew "perl"
 # Parallel gzip
 brew "pigz"
-# Locking and sync for Pip requirements files
-brew "pip-tools"
-# Execute binaries from Python packages in isolated environments
-brew "pipx"
 # PDF rendering library (based on the xpdf-3.0 code base)
 brew "poppler"
 # Library like getopt(3) with a number of enhancements
@@ -495,18 +489,10 @@ brew "pstree"
 brew "pv"
 # Password generator
 brew "pwgen"
-# Python version management
-brew "pyenv"
-# Pyenv plugin to manage virtualenv
-brew "pyenv-virtualenv"
 # Generic syntax highlighter
 brew "pygments"
 # Fastest and safest AV1 video encoder
 brew "rav1e"
-# Install various Ruby versions and implementations
-brew "ruby-build"
-# Ruby version manager
-brew "rbenv"
 # Rsync for cloud storage
 brew "rclone"
 # RC file (dotfile) management
@@ -525,8 +511,6 @@ brew "rubberband"
 brew "ruby"
 # Extremely fast Python linter, written in Rust
 brew "ruff"
-# Safe, concurrent, practical language
-brew "rust"
 # Terminal multiplexer with VT100/ANSI terminal emulation
 brew "screen"
 # Intuitive find & replace CLI
@@ -738,8 +722,5 @@ vscode "ms-vscode.makefile-tools"
 vscode "openai.chatgpt"
 vscode "openai.codex-audio"
 vscode "pkief.material-icon-theme"
-go "golang.org/x/perf/cmd/benchstat"
-go "golang.org/x/tools/gopls"
-go "github.com/flaviomartins/ssecat/cmd/ssecat"
-go "github.com/flaviomartins/tuniq/cmd/tuniq"
-npm "npm-check-updates"
+go "cmd/go"
+go "cmd/gofmt"
