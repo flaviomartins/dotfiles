@@ -326,30 +326,6 @@ if [[ -s "$NVM_DIR/nvm.sh" ]]; then
   load-nvmrc
 fi
 
-# rbenv
-export RUBY_CFLAGS="-O3 -march=native -mtune=native"
-export RBENV_ROOT="$HOME/.rbenv"
-[[ -d $RBENV_ROOT/bin ]] && path_prepend "$RBENV_ROOT/bin"
-[[ -d $RBENV_ROOT/shims ]] && path_prepend "$RBENV_ROOT/shims"
-
-load_rbenv_stack() {
-  [[ -n ${__RBENV_STACK_LOADED:-} ]] && return 0
-
-  unset -f rbenv 2>/dev/null
-
-  if command_exists rbenv; then
-    eval "$(rbenv init - zsh)"
-    typeset -g __RBENV_STACK_LOADED=1
-    return 0
-  fi
-
-  return 1
-}
-
-if [[ -d $RBENV_ROOT ]]; then
-  rbenv() { load_rbenv_stack && rbenv "$@"; }
-fi
-
 # sdkman
 export SDKMAN_DIR="$HOME/.sdkman"
 
