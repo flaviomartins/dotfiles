@@ -559,8 +559,6 @@ brew "uutils-coreutils"
 brew "uutils-diffutils"
 # Cross-platform Rust rewrite of the GNU findutils
 brew "uutils-findutils"
-# Extremely fast Python package installer and resolver, written in Rust
-brew "uv"
 # Sends magic packets to wake up network-devices
 brew "wakeonlan"
 # Executes a program periodically, showing output fullscreen
