@@ -256,9 +256,6 @@ export GOPATH="$HOME/go"
 # cargo
 [[ -d "$HOME/.cargo/bin" ]] && path_prepend "$HOME/.cargo/bin"
 
-# pipenv
-export PIPENV_VENV_IN_PROJECT=1
-
 # pipx
 PIPX_HOME="$HOME/.local/pipx"
 [[ -d $PIPX_HOME ]] && export PIPX_HOME
