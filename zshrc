@@ -40,10 +40,6 @@ fi
 # Load some plugins
 zcomet load agkozak/zsh-z
 
-# direnv plugin settings
-zstyle :omz:plugins:direnv mode export
-zcomet load ohmyzsh/ohmyzsh plugins/direnv
-
 # The Oh My Zsh ssh-agent plugin expects SHORT_HOST but does not need the full OMZ bootstrap.
 if [[ "$OSTYPE" = darwin* ]]; then
   SHORT_HOST=$(scutil --get LocalHostName 2>/dev/null) || SHORT_HOST="${HOST/.*/}"
