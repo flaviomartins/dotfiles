@@ -228,8 +228,11 @@ if (( __HOMEBREW_FOUND )); then
   # Normalize OpenSSL aliases so only one canonical OpenSSL bin is kept in PATH.
   path=("${(@)path:#${BREW_PREFIX}/opt/openssl/bin}")
   path=("${(@)path:#${BREW_PREFIX}/opt/openssl@3/bin}")
+  path=("${(@)path:#${BREW_PREFIX}/opt/openssl@4/bin}")
 
-  if [[ -d "$BREW_PREFIX/opt/openssl@3/bin" ]]; then
+  if [[ -d "$BREW_PREFIX/opt/openssl@4/bin" ]]; then
+    path_prepend "$BREW_PREFIX/opt/openssl@4/bin"
+  elif [[ -d "$BREW_PREFIX/opt/openssl@3/bin" ]]; then
     path_prepend "$BREW_PREFIX/opt/openssl@3/bin"
   elif [[ -d "$BREW_PREFIX/opt/openssl/bin" ]]; then
     path_prepend "$BREW_PREFIX/opt/openssl/bin"
