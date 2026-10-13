@@ -62,7 +62,7 @@ zcomet load romkatv/powerlevel10k
 # Load additional completion definitions before compinit.
 zcomet load zsh-users/zsh-completions
 
-# mise completion generates completion scripts that complete mise's commands, flags, tools, versions and task names.
+# Load additional completion definitions from uv/mise
 [[ -d "$HOME/.zfunc" ]] && fpath=("$HOME/.zfunc" $fpath)
 
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
