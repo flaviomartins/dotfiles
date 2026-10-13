@@ -256,10 +256,6 @@ export GOPATH="$HOME/go"
 # cargo
 [[ -d "$HOME/.cargo/bin" ]] && path_prepend "$HOME/.cargo/bin"
 
-# pipx
-PIPX_HOME="$HOME/.local/pipx"
-[[ -d $PIPX_HOME ]] && export PIPX_HOME
-
 # Node Version Manager (nvm)
 export NVM_DIR="$HOME/.nvm"
 autoload -U add-zsh-hook
