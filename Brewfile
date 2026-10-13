@@ -23,16 +23,6 @@ brew "atuin", restart_service: :changed
 brew "m4"
 # Automatic configure script builder
 brew "autoconf"
-# Extremely Fast Compression algorithm
-brew "lz4"
-# Library for decimal floating point arithmetic
-brew "mpdecimal"
-# General-purpose data compression with high compression ratio
-brew "xz"
-# Zstandard is a real-time compression algorithm
-brew "zstd"
-# Official Amazon AWS command-line interface
-brew "awscli"
 # Text-based UI library
 brew "ncurses"
 # Bourne-Again SHell, a UNIX command interpreter
@@ -47,6 +37,12 @@ brew "openssl@3"
 brew "bat"
 # High performance key/value database
 brew "berkeley-db"
+# Extremely Fast Compression algorithm
+brew "lz4"
+# General-purpose data compression with high compression ratio
+brew "xz"
+# Zstandard is a real-time compression algorithm
+brew "zstd"
 # GNU binary tools for native development
 brew "binutils"
 # Generic-purpose lossless compression algorithm by Google
@@ -103,6 +99,8 @@ brew "cmake-docs"
 brew "colordiff"
 # YAML Parser
 brew "libyaml"
+# Library for decimal floating point arithmetic
+brew "mpdecimal"
 # Utility that creates projects from templates
 brew "cookiecutter"
 # GNU multiple precision arithmetic library
@@ -720,3 +718,4 @@ vscode "openai.codex-audio"
 vscode "pkief.material-icon-theme"
 go "cmd/go"
 go "cmd/gofmt"
+npm "npm-check-updates"
