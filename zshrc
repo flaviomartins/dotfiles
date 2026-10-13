@@ -257,48 +257,6 @@ export GOPATH="$HOME/go"
 export CARGO_HOME="$HOME/.cargo"
 [[ -d "$CARGO_HOME/bin" ]] && path_prepend "$CARGO_HOME/bin"
 
-# sdkman
-export SDKMAN_DIR="$HOME/.sdkman"
-
-sdkman_add_current_bins() {
-  local candidate_dir version_dir current_bin
-
-  [[ -d "$SDKMAN_DIR/candidates" ]] || return 0
-
-  for candidate_dir in "$SDKMAN_DIR"/candidates/*(/N); do
-    [[ -d "$candidate_dir" ]] || continue
-
-    current_bin="$candidate_dir/current/bin"
-    if [[ -d "$current_bin" ]]; then
-      path_prepend "$current_bin"
-      continue
-    fi
-
-    for version_dir in "$candidate_dir"/*(/N); do
-      [[ -d "$version_dir/bin" ]] || continue
-      path_prepend "$version_dir/bin"
-      break
-    done
-  done
-}
-
-# Make current SDKMAN candidate binaries (e.g. mvn, java, gradle) available
-# even before the full SDKMAN init script is loaded.
-sdkman_add_current_bins
-
-load_sdkman() {
-  [[ -n ${__SDKMAN_LOADED:-} ]] && return 0
-  [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] || return 1
-
-  unset -f sdk 2>/dev/null
-  source "$SDKMAN_DIR/bin/sdkman-init.sh"
-  typeset -g __SDKMAN_LOADED=1
-}
-
-if [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]]; then
-  sdk() { load_sdkman && sdk "$@"; }
-fi
-
 # It is good to load these popular plugins last, and in this order:
 zcomet load zsh-users/zsh-autosuggestions
 zcomet load zsh-users/zsh-syntax-highlighting
