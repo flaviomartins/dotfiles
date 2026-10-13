@@ -97,12 +97,6 @@ brew "cmake"
 brew "cmake-docs"
 # Color-highlighted diff(1) output
 brew "colordiff"
-# YAML Parser
-brew "libyaml"
-# Library for decimal floating point arithmetic
-brew "mpdecimal"
-# Utility that creates projects from templates
-brew "cookiecutter"
 # GNU multiple precision arithmetic library
 brew "gmp"
 # GNU File, Shell, and Text utilities
@@ -133,6 +127,8 @@ brew "diff-so-fancy"
 brew "difftastic"
 # File comparison utilities
 brew "diffutils"
+# Library for decimal floating point arithmetic
+brew "mpdecimal"
 # Recursive piecewise hashing tool
 brew "ssdeep"
 # Test domains for typo squatting, phishing and corporate espionage
@@ -343,6 +339,8 @@ brew "jansson"
 brew "jasper"
 # JBIG2 encoder (for monochrome documents)
 brew "jbig2enc"
+# YAML Parser
+brew "libyaml"
 # Serializes the output of command-line tools to structured JSON output
 brew "jc"
 # Utility to optimize JPEG files
@@ -433,8 +431,6 @@ brew "ncdu"
 brew "neovim"
 # Port scanning utility for large networks
 brew "nmap"
-# Open-source, cross-platform JavaScript runtime environment
-brew "node"
 # Unix command-line queue utility
 brew "nq"
 # Platform-neutral API for system-level and libc-like functions
@@ -475,8 +471,6 @@ brew "poppler"
 brew "popt"
 # Object-relational database system
 brew "postgresql@18", link: true
-# Framework for managing multi-language pre-commit hooks
-brew "pre-commit"
 # Unix pager optimized for psql
 brew "pspg"
 # Show ps output as a tree
@@ -503,8 +497,6 @@ brew "xxhash"
 brew "rsync"
 # Audio time stretcher tool and library
 brew "rubberband"
-# Powerful, clean, object-oriented scripting language
-brew "ruby"
 # Extremely fast Python linter, written in Rust
 brew "ruff"
 # Terminal multiplexer with VT100/ANSI terminal emulation
@@ -563,8 +555,6 @@ brew "wakeonlan"
 brew "watch"
 # Display word differences between text files
 brew "wdiff"
-# Command-line tool to help build, run, and test web extensions
-brew "web-ext"
 # Generate WireGuard profile from Cloudflare Warp account
 brew "wgcf"
 # Internet file retriever
@@ -718,4 +708,7 @@ vscode "openai.codex-audio"
 vscode "pkief.material-icon-theme"
 go "cmd/go"
 go "cmd/gofmt"
+uv "cookiecutter"
+uv "pre-commit"
+uv "ruff"
 npm "npm-check-updates"
