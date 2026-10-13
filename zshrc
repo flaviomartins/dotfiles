@@ -63,7 +63,7 @@ zcomet load romkatv/powerlevel10k
 zcomet load zsh-users/zsh-completions
 
 # Load additional completion definitions from uv/mise
-[[ -d "$HOME/.zfunc" ]] && fpath=("$HOME/.zfunc" $fpath)
+[[ -d "$HOME/.local/share/zsh/site-functions" ]] && fpath=("$HOME/.local/share/zsh/site-functions" $fpath)
 
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
 [[ -d "$HOME/.docker/completions" ]] && fpath=("$HOME/.docker/completions" $fpath)
