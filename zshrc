@@ -263,32 +263,6 @@ export PIPENV_VENV_IN_PROJECT=1
 PIPX_HOME="$HOME/.local/pipx"
 [[ -d $PIPX_HOME ]] && export PIPX_HOME
 
-# pyenv
-export PYTHON_CFLAGS="-O2 -march=native -mtune=native -flto"
-export PYTHON_CONFIGURE_OPTS="--enable-shared --enable-optimizations"
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && path_prepend "$PYENV_ROOT/bin"
-[[ -d $PYENV_ROOT/shims ]] && path_prepend "$PYENV_ROOT/shims"
-
-load_pyenv_stack() {
-  [[ -n ${__PYENV_STACK_LOADED:-} ]] && return 0
-
-  unset -f pyenv 2>/dev/null
-
-  if command_exists pyenv; then
-    eval "$(pyenv init - zsh)"
-    [[ -d "$PYENV_ROOT/plugins/pyenv-virtualenv" ]] && eval "$(pyenv virtualenv-init -)"
-    typeset -g __PYENV_STACK_LOADED=1
-    return 0
-  fi
-
-  return 1
-}
-
-if [[ -d $PYENV_ROOT ]]; then
-  pyenv() { load_pyenv_stack && pyenv "$@"; }
-fi
-
 # Node Version Manager (nvm)
 export NVM_DIR="$HOME/.nvm"
 autoload -U add-zsh-hook
