@@ -76,6 +76,7 @@ zcomet load zsh-users/zsh-completions
 # Run compinit and compile its cache (cache completions aggressively)
 autoload -Uz compinit
 typeset -g ZSH_COMPDUMP="${ZDOTDIR:-$HOME}/.zcompdump"
+# Refresh completion discovery immediately: rm -f ~/.zcompdump ~/.zcompdump.zwc && exec zsh
 typeset -g ZSH_COMPINIT_REFRESH_SECONDS=$((7 * 24 * 60 * 60))
 typeset -gi zcompdump_mtime=0
 
