@@ -426,8 +426,6 @@ brew "mtr"
 # Lightweight PDF and XPS viewer
 brew "mupdf"
 # Open source relational database management system
-brew "mysql-client@8.0"
-# Open source relational database management system
 brew "mysql-client@8.4"
 # Free (GNU) replacement for the Pico text editor
 brew "nano"
