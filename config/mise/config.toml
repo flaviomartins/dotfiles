@@ -10,6 +10,7 @@ auto = false
 awscli = { version = "latest", symlink_bins = "true" }
 go = "1.27"
 java = "lts"
+maven = "latest"
 node = "26"
 python = "3.15"
 ruby = "4.0"
