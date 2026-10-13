@@ -1,0 +1,13 @@
+[settings]
+idiomatic_version_file_enable_tools = ["java", "node", "ruby", "rust", "python"]
+idiomatic_version_file_disable_files = ["node:package.json"]
+env_file = "true"
+
+[settings.self_update]
+auto = false
+
+[tools]
+go = "1.27"
+java = "lts"
+node = "26"
+ruby = "4.0"
