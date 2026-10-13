@@ -320,9 +320,6 @@ path_prepend_optional "$HOME/.cargo/bin"
 # local bin
 path_prepend_optional "$HOME/.local/bin"
 
-# Added by Antigravity
-path_prepend_optional "$HOME/.antigravity/antigravity/bin"
-
 export PATH
 
 # Lazy-load conda/mamba to keep interactive startup fast.
