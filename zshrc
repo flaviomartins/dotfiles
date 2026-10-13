@@ -254,7 +254,8 @@ export GOPATH="$HOME/go"
 [[ -d $GOPATH/bin ]] && path_prepend "$GOPATH/bin"
 
 # cargo
-[[ -d "$HOME/.cargo/bin" ]] && path_prepend "$HOME/.cargo/bin"
+export CARGO_HOME="$HOME/.cargo"
+[[ -d "$CARGO_HOME/bin" ]] && path_prepend "$CARGO_HOME/bin"
 
 # sdkman
 export SDKMAN_DIR="$HOME/.sdkman"
@@ -313,9 +314,6 @@ if (( $+commands[atuin] )); then
 fi
 
 # zprof
-
-# cargo bin
-path_prepend_optional "$HOME/.cargo/bin"
 
 # local bin
 path_prepend_optional "$HOME/.local/bin"
