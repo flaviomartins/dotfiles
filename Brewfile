@@ -437,8 +437,6 @@ brew "nq"
 brew "nspr"
 # Libraries for security-enabled client and server applications
 brew "nss"
-# Oracle Cloud Infrastructure CLI
-brew "oci-cli"
 # PNG image optimizing utility
 brew "pngquant"
 # Seamless operability between C++11 and Python
