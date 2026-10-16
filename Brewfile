@@ -495,8 +495,6 @@ brew "xxhash"
 brew "rsync"
 # Audio time stretcher tool and library
 brew "rubberband"
-# Extremely fast Python linter, written in Rust
-brew "ruff"
 # Terminal multiplexer with VT100/ANSI terminal emulation
 brew "screen"
 # Intuitive find & replace CLI
@@ -709,4 +707,3 @@ go "cmd/gofmt"
 uv "cookiecutter"
 uv "pre-commit"
 uv "ruff"
-npm "npm-check-updates"
