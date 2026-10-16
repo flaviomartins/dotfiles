@@ -1,4 +1,5 @@
 tap "buo/cask-upgrade", trusted: true
+tap "openai/tools"
 # Perceptual video quality assessment based on multi-method fusion
 brew "libvmaf"
 # Codec library for encoding and decoding AV1 video streams
@@ -599,6 +600,8 @@ cask "discord"
 cask "docker-desktop"
 # Client for the Dropbox cloud storage service
 cask "dropbox"
+# Utility to support moving and resizing using a modifier key and mouse drag
+cask "easy-move+resize"
 # Matrix collaboration client
 cask "element"
 # Email client
@@ -636,6 +639,8 @@ cask "ngrok"
 cask "obsidian"
 # Visual communication software
 cask "omnigraffle"
+# The official CLI for the OpenAI API.
+cask "openai/tools/openai", trusted: true
 # Utility to uninstall apps and remove leftover files from old/uninstalled apps
 cask "pearcleaner"
 # Used to access context-specific actions when text is selected
@@ -704,6 +709,10 @@ vscode "openai.codex-audio"
 vscode "pkief.material-icon-theme"
 go "cmd/go"
 go "cmd/gofmt"
+go "github.com/flaviomartins/ssecat/cmd/ssecat"
+go "github.com/flaviomartins/tuniq/cmd/tuniq"
 uv "cookiecutter"
+uv "llm"
 uv "pre-commit"
 uv "ruff"
+npm "@readwise/cli"
