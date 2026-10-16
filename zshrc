@@ -308,3 +308,5 @@ if [[ -x "$_CONDA_ROOT/bin/conda" || -x "$_CONDA_ROOT/bin/mamba" ]]; then
 fi
 
 eval "$($HOME/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
+
+[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
