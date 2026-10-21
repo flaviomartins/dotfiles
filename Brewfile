@@ -112,30 +112,12 @@ brew "curl"
 brew "dav1d"
 # Computes the SHA1 hash of schema and content of a SQLite database
 brew "dbhash"
-# Library and utilities for processing GIFs
-brew "giflib"
-# JPEG image codec that aids compression and decompression
-brew "jpeg-turbo"
-# TIFF library and utilities
-brew "libtiff"
-# Image format providing lossless and lossy compression for web images
-brew "webp"
-# Color management engine supporting ICC profiles
-brew "little-cms2"
 # Good-lookin' diffs with diff-highlight and more
 brew "diff-so-fancy"
 # Diff that understands syntax
 brew "difftastic"
 # File comparison utilities
 brew "diffutils"
-# Library for decimal floating point arithmetic
-brew "mpdecimal"
-# Recursive piecewise hashing tool
-brew "ssdeep"
-# Test domains for typo squatting, phishing and corporate espionage
-brew "dnstwist"
-# Text processing system for reStructuredText
-brew "docutils"
 # Convert text between DOS, UNIX, and Mac formats
 brew "dos2unix"
 # View disk space usage and delete unwanted data, fast
@@ -218,6 +200,14 @@ brew "libmpc"
 brew "gcc"
 # GNU database manager
 brew "gdbm"
+# Library and utilities for processing GIFs
+brew "giflib"
+# JPEG image codec that aids compression and decompression
+brew "jpeg-turbo"
+# TIFF library and utilities
+brew "libtiff"
+# Image format providing lossless and lossy compression for web images
+brew "webp"
 # Toolkit for image loading and pixel buffer manipulation
 brew "gdk-pixbuf"
 # Automatic updates of GeoIP2 and GeoIP Legacy databases
@@ -230,6 +220,8 @@ brew "graphite2"
 brew "harfbuzz"
 # JBIG2 decoder and library (for monochrome documents)
 brew "jbig2dec"
+# Color management engine supporting ICC profiles
+brew "little-cms2"
 # Library for JPEG-2000 image manipulation
 brew "openjpeg"
 # Image processing and image analysis library
@@ -292,8 +284,6 @@ brew "hdf5"
 brew "highway"
 # Improved top (interactive process viewer)
 brew "htop"
-# User-friendly cURL replacement (command-line HTTP client)
-brew "httpie"
 # Configurable static site generator
 brew "hugo"
 # Run and Test HTTP Requests with plain text and curl
@@ -322,16 +312,6 @@ brew "librsvg"
 brew "libtool"
 # Tools and libraries to manipulate images in many formats
 brew "imagemagick-full", link: true
-# Palette quantization library extracted from pnquant2
-brew "libimagequant"
-# Library for complex text layout
-brew "libraqm"
-# Friendly PIL fork (Python Imaging Library)
-brew "pillow"
-# Tools for and transforming and inspecting PDF files
-brew "qpdf"
-# Alternative to the official immich-CLI command written in Go
-brew "immich-go"
 # Official CLI for the IPinfo IP Address API
 brew "ipinfo-cli"
 # C library for encoding, decoding, and manipulating JSON
@@ -340,10 +320,6 @@ brew "jansson"
 brew "jasper"
 # JBIG2 encoder (for monochrome documents)
 brew "jbig2enc"
-# YAML Parser
-brew "libyaml"
-# Serializes the output of command-line tools to structured JSON output
-brew "jc"
 # Utility to optimize JPEG files
 brew "jpegoptim"
 # Lightweight and flexible command-line JSON processor
@@ -354,6 +330,8 @@ brew "just"
 brew "lazydocker"
 # Simple terminal UI for git commands
 brew "lazygit"
+# Library for decimal floating point arithmetic
+brew "mpdecimal"
 # Pager program similar to more
 brew "less"
 # Sophisticated file transfer program
@@ -368,10 +346,14 @@ brew "libbluray"
 brew "libevent"
 # EXIF parsing library
 brew "libexif"
+# Palette quantization library extracted from pnquant2
+brew "libimagequant"
 # Library for large linear classification
 brew "liblinear"
 # C library for reading and writing MATLAB MAT files
 brew "libmatio"
+# Library for complex text layout
+brew "libraqm"
 # Reliable Internet Stream Transport (RIST)
 brew "librist"
 # Library for sample rate conversion of audio data
@@ -392,6 +374,8 @@ brew "libsql"
 brew "libvidstab"
 # GNOME XML library
 brew "libxml2"
+# YAML Parser
+brew "libyaml"
 # File list utility with features from ls(1), find(1), stat(1), and du(1)
 brew "lr"
 # Powerful, lightweight programming language
@@ -400,12 +384,6 @@ brew "lua"
 brew "make"
 # Cryptographic & SSL/TLS library
 brew "mbedtls"
-# Memory profiler for Python applications
-brew "memray"
-# Small build system for use with gyp or CMake
-brew "ninja"
-# Fast and user friendly build system
-brew "meson"
 # High performance static file server
 brew "miniserve"
 # Nice to use pager for humans
@@ -430,6 +408,8 @@ brew "nano"
 brew "ncdu"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
+# Small build system for use with gyp or CMake
+brew "ninja"
 # Port scanning utility for large networks
 brew "nmap"
 # Unix command-line queue utility
@@ -438,12 +418,6 @@ brew "nq"
 brew "nspr"
 # Libraries for security-enabled client and server applications
 brew "nss"
-# PNG image optimizing utility
-brew "pngquant"
-# Seamless operability between C++11 and Python
-brew "pybind11"
-# Adds an OCR text layer to scanned PDF files
-brew "ocrmypdf"
 # High performance message passing library
 brew "open-mpi"
 # Audio codecs extracted from Android open source project
@@ -464,6 +438,10 @@ brew "pandoc"
 brew "perl"
 # Parallel gzip
 brew "pigz"
+# Friendly PIL fork (Python Imaging Library)
+brew "pillow"
+# PNG image optimizing utility
+brew "pngquant"
 # PDF rendering library (based on the xpdf-3.0 code base)
 brew "poppler"
 # Library like getopt(3) with a number of enhancements
@@ -478,8 +456,10 @@ brew "pstree"
 brew "pv"
 # Password generator
 brew "pwgen"
-# Generic syntax highlighter
-brew "pygments"
+# Seamless operability between C++11 and Python
+brew "pybind11"
+# Tools for and transforming and inspecting PDF files
+brew "qpdf"
 # Fastest and safest AV1 video encoder
 brew "rav1e"
 # Rsync for cloud storage
@@ -510,12 +490,12 @@ brew "socat"
 brew "speex"
 # Displays the differences between SQLite databases
 brew "sqldiff"
-# SQL linter and auto-formatter for Humans
-brew "sqlfluff"
 # SQLite remote copy tool
 brew "sqlite-rsync"
 # Secure Reliable Transport
 brew "srt"
+# Recursive piecewise hashing tool
+brew "ssdeep"
 # Add a public key to a remote machine's authorized_keys file
 brew "ssh-copy-id"
 # Tool Command Language
@@ -564,10 +544,6 @@ brew "wiggle"
 brew "xe"
 # High-performance, high-quality MPEG-4 video library
 brew "xvid"
-# Tool for managing your YubiKey configuration
-brew "ykman"
-# Feature-rich command-line audio/video downloader
-brew "yt-dlp"
 # High-performance, asynchronous messaging library
 brew "zeromq"
 # Scaling, colorspace conversion, and dithering library
@@ -709,10 +685,16 @@ vscode "openai.codex-audio"
 vscode "pkief.material-icon-theme"
 go "cmd/go"
 go "cmd/gofmt"
-go "github.com/flaviomartins/ssecat/cmd/ssecat"
-go "github.com/flaviomartins/tuniq/cmd/tuniq"
 uv "cookiecutter"
+uv "dnstwist"
+uv "httpie"
+uv "jc"
 uv "llm"
+uv "memray"
+uv "meson"
 uv "pre-commit"
+uv "pygments"
 uv "ruff"
-npm "@readwise/cli"
+uv "sqlfluff"
+uv "yt-dlp"
+uv "yubikey-manager"
