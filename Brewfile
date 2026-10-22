@@ -1,5 +1,4 @@
 tap "buo/cask-upgrade", trusted: true
-tap "dagger/tap"
 tap "openai/tools"
 # Perceptual video quality assessment based on multi-method fusion
 brew "libvmaf"
@@ -571,8 +570,6 @@ cask "chatgpt"
 cask "claude"
 # Terminal-based AI coding assistant
 cask "claude-code"
-# Containerized environments for coding agents
-cask "dagger/tap/container-use", trusted: true
 # Voice and text chat software
 cask "discord"
 # App to build and share containerised applications and microservices
@@ -660,6 +657,7 @@ cask "zotero"
 cask "zulip"
 vscode "anthropic.claude-code"
 vscode "bruno-api-client.bruno"
+vscode "charliermarsh.ruff"
 vscode "davidanson.vscode-markdownlint"
 vscode "dbaeumer.vscode-eslint"
 vscode "editorconfig.editorconfig"
