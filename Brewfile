@@ -593,6 +593,8 @@ cask "font-fira-code-nerd-font"
 cask "font-fira-mono-nerd-font"
 cask "font-jetbrains-mono-nerd-font"
 cask "font-literata"
+# Terminal emulator that uses platform-native UI and GPU acceleration
+cask "ghostty"
 # Native client for GitHub Copilot
 cask "github-copilot-app"
 # Homebrew's official GUI
@@ -617,6 +619,8 @@ cask "obsidian"
 cask "omnigraffle"
 # The official CLI for the OpenAI API.
 cask "openai/tools/openai", trusted: true
+# Self-hosted daemon for AI coding agents
+cask "paseo"
 # Utility to uninstall apps and remove leftover files from old/uninstalled apps
 cask "pearcleaner"
 # Used to access context-specific actions when text is selected
@@ -697,5 +701,5 @@ uv "pre-commit"
 uv "pygments"
 uv "ruff"
 uv "sqlfluff"
-uv "yt-dlp"
+uv "yt-dlp[curl-cffi,default]"
 uv "yubikey-manager"
