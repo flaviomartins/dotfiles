@@ -599,8 +599,6 @@ cask "ghostty"
 cask "github-copilot-app"
 # Homebrew's official GUI
 cask "homebrew-app"
-# JetBrains tools manager
-cask "jetbrains-toolbox"
 # Secure video conferencing app
 cask "jitsi-meet"
 # Helper application for the Keka file archiver
