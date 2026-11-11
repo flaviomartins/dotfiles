@@ -1,4 +1,5 @@
 tap "buo/cask-upgrade", trusted: true
+tap "heroku/brew"
 tap "openai/tools"
 # Perceptual video quality assessment based on multi-method fusion
 brew "libvmaf"
@@ -552,6 +553,8 @@ brew "zimg"
 brew "zip"
 # UNIX shell (command interpreter)
 brew "zsh"
+# Everything you need to get started with Heroku
+brew "heroku/brew/heroku", trusted: true
 # Webcam & audio device software
 cask "ankerwork"
 # Universal chat app powered by Matrix
@@ -563,19 +566,19 @@ cask "bruno"
 # Calendar software focusing on flexibility and reliability
 cask "busycal"
 # Contact manager focusing on efficiency
-cask "busycontacts"
+cask "busycontacts", pin: true
 # OpenAI's official ChatGPT desktop app
-cask "chatgpt"
+cask "chatgpt", pin: true
 # Anthropic's official Claude AI desktop app
-cask "claude"
+cask "claude", pin: true
 # Terminal-based AI coding assistant
 cask "claude-code"
 # Voice and text chat software
 cask "discord"
 # App to build and share containerised applications and microservices
-cask "docker-desktop"
+cask "docker-desktop", pin: true
 # Client for the Dropbox cloud storage service
-cask "dropbox"
+cask "dropbox", pin: true
 # Utility to support moving and resizing using a modifier key and mouse drag
 cask "easy-move+resize"
 # Matrix collaboration client
@@ -596,7 +599,7 @@ cask "font-literata"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
 # Native client for GitHub Copilot
-cask "github-copilot-app"
+cask "github-copilot-app", pin: true
 # Homebrew's official GUI
 cask "homebrew-app"
 # Secure video conferencing app
@@ -630,7 +633,7 @@ cask "qlmarkdown"
 # Thumbnails, static previews, cover art and metadata for video files
 cask "quicklook-video"
 # Save articles to read, highlight key content, and organise notes for review
-cask "reader"
+cask "reader", pin: true
 # Import highlights from Apple Books to Readwise
 cask "readwise-ibooks"
 # Font manager that helps preview, install, sync and manage fonts
@@ -646,7 +649,7 @@ cask "tripmode"
 # License free Wi-Fi, VPN, and Access Application for Organizations
 cask "unifi-identity-endpoint"
 # Open-source code editor
-cask "visual-studio-code"
+cask "visual-studio-code", pin: true
 # Multimedia player
 cask "vlc"
 # Network monitoring and troubleshooting tool
