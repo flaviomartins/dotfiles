@@ -307,8 +307,14 @@ if [[ -x "$_CONDA_ROOT/bin/conda" || -x "$_CONDA_ROOT/bin/mamba" ]]; then
   mamba() { load_conda_stack && mamba "$@"; }
 fi
 
-eval "$($HOME/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
+if [[ -x "$HOME/.local/bin/mise" ]]; then
+  eval "$("$HOME/.local/bin/mise" activate zsh)"
+  eval "$("$HOME/.local/bin/mise" completion zsh)"
+fi
 
-export PATH="/Users/flaviomartins/.pixi/bin:$PATH" # added by https://pixi.sh/install.sh
+if [[ -x "$HOME/.pixi/bin/pixi" ]]; then
+  path_prepend_optional "$HOME/.pixi/bin"
+  eval "$("$HOME/.pixi/bin/pixi" completion --shell zsh)"
+fi
 
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
