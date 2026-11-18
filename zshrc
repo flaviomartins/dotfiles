@@ -309,4 +309,6 @@ fi
 
 eval "$($HOME/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
 
+export PATH="/Users/flaviomartins/.pixi/bin:$PATH" # added by https://pixi.sh/install.sh
+
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"

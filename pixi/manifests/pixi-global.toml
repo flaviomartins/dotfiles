@@ -1,0 +1,11 @@
+version = 1
+
+[envs.sqlite]
+channels = ["conda-forge"]
+dependencies = { dbhash = "*", sqlite = "*", sqldiff = "*", sqlite_rsync = "*" }
+exposed = { dbhash = "dbhash", sqlite3 = "sqlite3", sqldiff = "sqldiff", sqlite3_rsync = "sqlite3_rsync" }
+
+[envs.duckdb]
+channels = ["conda-forge"]
+dependencies = { duckdb-cli = "*" }
+exposed = { duckdb = "duckdb" }
