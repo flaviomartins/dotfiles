@@ -61,6 +61,7 @@ zcomet load romkatv/powerlevel10k
 
 # Load additional completion definitions before compinit.
 zcomet load zsh-users/zsh-completions
+zcomet load conda-incubator/conda-zsh-completion
 
 # Load additional completion definitions from uv/mise
 [[ -d "$HOME/.local/share/zsh/site-functions" ]] && fpath=("$HOME/.local/share/zsh/site-functions" $fpath)
@@ -89,6 +90,10 @@ if (( EPOCHSECONDS - zcompdump_mtime > ZSH_COMPINIT_REFRESH_SECONDS )); then
 else
   compinit -C -d "$ZSH_COMPDUMP"
 fi
+
+# Register explicitly because the cached compinit scan may predate the plugin.
+autoload -Uz _conda
+compdef _conda conda mamba micromamba
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
