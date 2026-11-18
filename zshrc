@@ -313,7 +313,7 @@ if [[ -x "$_CONDA_ROOT/bin/conda" || -x "$_CONDA_ROOT/bin/mamba" ]]; then
 fi
 
 if [[ -x "$HOME/.local/bin/mise" ]]; then
-  eval "$("$HOME/.local/bin/mise" activate zsh)"
+  eval "$("$HOME/.local/bin/mise" activate --quiet zsh)"
   eval "$("$HOME/.local/bin/mise" completion zsh)"
 fi
 
