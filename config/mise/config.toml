@@ -4,7 +4,7 @@ idiomatic_version_file_disable_files = ["node:package.json"]
 env_file = "true"
 
 [settings.self_update]
-auto = false
+auto = true
 
 [tools]
 awscli = { version = "latest", symlink_bins = "true" }
