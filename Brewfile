@@ -149,24 +149,6 @@ brew "entr"
 brew "eza"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
-# MP3 player for Linux and UNIX
-brew "mpg123"
-# High quality MPEG Audio Layer III (MP3) encoder
-brew "lame"
-# VP8/VP9 video codec
-brew "libvpx"
-# Audio codec
-brew "opus"
-# SDL2 compatibility layer that uses SDL3 behind the scenes
-brew "sdl2-compat"
-# AV1 encoder
-brew "svt-av1"
-# H.264/AVC encoder
-brew "x264"
-# H.265/HEVC encoder
-brew "x265"
-# Play, record, convert, and stream select audio and video codecs
-brew "ffmpeg"
 # LLVM's OpenMP runtime library
 brew "libomp"
 # C routines to compute the Discrete Fourier Transform
@@ -301,6 +283,8 @@ brew "openexr"
 brew "jpeg-xl"
 # Open h.265 video codec implementation
 brew "libde265"
+# H.265/HEVC encoder
+brew "x265"
 # ISO/IEC 23008-12:2017 HEIF file format decoder and encoder
 brew "libheif"
 # C/C++ seam carving library
@@ -327,6 +311,10 @@ brew "jpegoptim"
 brew "jq"
 # Handy way to save and run project-specific commands
 brew "just"
+# MP3 player for Linux and UNIX
+brew "mpg123"
+# High quality MPEG Audio Layer III (MP3) encoder
+brew "lame"
 # Lazier way to manage everything docker
 brew "lazydocker"
 # Simple terminal UI for git commands
@@ -361,6 +349,8 @@ brew "librist"
 brew "libsamplerate"
 # Vorbis general audio compression codec
 brew "libvorbis"
+# Audio codec
+brew "opus"
 # C library for files containing sampled sound
 brew "libsndfile"
 # NaCl networking and cryptography library
@@ -373,6 +363,8 @@ brew "libspng"
 brew "libsql"
 # Transcode video stabilization plugin
 brew "libvidstab"
+# VP8/VP9 video codec
+brew "libvpx"
 # GNOME XML library
 brew "libxml2"
 # YAML Parser
@@ -481,6 +473,8 @@ brew "rubberband"
 brew "screen"
 # Intuitive find & replace CLI
 brew "sd"
+# SDL2 compatibility layer that uses SDL3 behind the scenes
+brew "sdl2-compat"
 # Database of common MIME types
 brew "shared-mime-info"
 # Compression/decompression library aiming for high speed
@@ -499,6 +493,8 @@ brew "srt"
 brew "ssdeep"
 # Add a public key to a remote machine's authorized_keys file
 brew "ssh-copy-id"
+# AV1 encoder
+brew "svt-av1"
 # Tool Command Language
 brew "tcl-tk"
 # Enables extra languages support for Tesseract
@@ -541,6 +537,8 @@ brew "wget"
 brew "wget2"
 # Program for applying patches with conflicting changes
 brew "wiggle"
+# H.264/AVC encoder
+brew "x264"
 # Simple xargs and apply replacement
 brew "xe"
 # High-performance, high-quality MPEG-4 video library
