@@ -437,8 +437,6 @@ brew "pngquant"
 brew "poppler"
 # Library like getopt(3) with a number of enhancements
 brew "popt"
-# Unix pager optimized for psql
-brew "pspg"
 # Show ps output as a tree
 brew "pstree"
 # Monitor data's progress through a pipe
