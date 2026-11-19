@@ -393,8 +393,6 @@ brew "mozjpeg"
 brew "mtr"
 # Lightweight PDF and XPS viewer
 brew "mupdf"
-# Open source relational database management system
-brew "mysql-client@8.4"
 # Free (GNU) replacement for the Pico text editor
 brew "nano"
 # NCurses Disk Usage
@@ -439,8 +437,6 @@ brew "pngquant"
 brew "poppler"
 # Library like getopt(3) with a number of enhancements
 brew "popt"
-# Object-relational database system
-brew "postgresql@18", link: true
 # Unix pager optimized for psql
 brew "pspg"
 # Show ps output as a tree
