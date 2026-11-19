@@ -252,7 +252,6 @@ if (( __HOMEBREW_FOUND )); then
   # Commands from bash/less/nano/screen remain available via Homebrew's bin directory.
 
   # Databases
-  path_prepend "$BREW_PREFIX/opt/mysql-client@8.4/bin/"
   path_prepend "$BREW_PREFIX/opt/sqlite/bin"
 fi
 
