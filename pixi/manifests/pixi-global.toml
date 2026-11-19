@@ -9,3 +9,8 @@ exposed = { dbhash = "dbhash", sqlite3 = "sqlite3", sqldiff = "sqldiff", sqlite3
 channels = ["conda-forge"]
 dependencies = { duckdb-cli = "*" }
 exposed = { duckdb = "duckdb" }
+
+[envs.ffmpeg]
+channels = ["conda-forge"]
+dependencies = { ffmpeg = "*", yt-dlp = "*" }
+exposed = { yt-dlp = "yt-dlp", ffmpeg = "ffmpeg", ffprobe = "ffprobe", ffplay = "ffplay" }
