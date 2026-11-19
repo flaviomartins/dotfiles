@@ -253,7 +253,6 @@ if (( __HOMEBREW_FOUND )); then
 
   # Databases
   path_prepend "$BREW_PREFIX/opt/mysql-client@8.4/bin/"
-  path_prepend "$BREW_PREFIX/opt/postgresql@18/bin"
   path_prepend "$BREW_PREFIX/opt/sqlite/bin"
 fi
 
