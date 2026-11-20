@@ -173,12 +173,6 @@ brew "fzf"
 brew "mpfr"
 # GNU awk utility
 brew "gawk"
-# Integer Set Library for the polyhedral model
-brew "isl"
-# C library for the arithmetic of high precision complex numbers
-brew "libmpc"
-# GNU compiler collection
-brew "gcc"
 # GNU database manager
 brew "gdbm"
 # Library and utilities for processing GIFs
@@ -255,12 +249,6 @@ brew "gron"
 brew "gzip"
 # Smarter Dockerfile linter to validate best practices
 brew "hadolint"
-# Adaptive Entropy Coding implementing Golomb-Rice algorithm
-brew "libaec"
-# Package compiler and linker metadata toolkit
-brew "pkgconf"
-# File format designed to store large amounts of data
-brew "hdf5"
 # Performance-portable, length-agnostic SIMD with runtime dispatch
 brew "highway"
 # Improved top (interactive process viewer)
@@ -297,6 +285,8 @@ brew "libtool"
 brew "imagemagick-full", link: true
 # Official CLI for the IPinfo IP Address API
 brew "ipinfo-cli"
+# Integer Set Library for the polyhedral model
+brew "isl"
 # C library for encoding, decoding, and manipulating JSON
 brew "jansson"
 # Library for manipulating JPEG-2000 images
@@ -323,6 +313,8 @@ brew "mpdecimal"
 brew "less"
 # Sophisticated file transfer program
 brew "lftp"
+# Adaptive Entropy Coding implementing Golomb-Rice algorithm
+brew "libaec"
 # Implementation of the Unicode line- and word-breaking algorithms
 brew "libunibreak"
 # Subtitle renderer for the ASS/SSA subtitle format
@@ -337,8 +329,8 @@ brew "libexif"
 brew "libimagequant"
 # Library for large linear classification
 brew "liblinear"
-# C library for reading and writing MATLAB MAT files
-brew "libmatio"
+# C library for the arithmetic of high precision complex numbers
+brew "libmpc"
 # Library for complex text layout
 brew "libraqm"
 # Reliable Internet Stream Transport (RIST)
@@ -407,8 +399,6 @@ brew "nq"
 brew "nspr"
 # Libraries for security-enabled client and server applications
 brew "nss"
-# High performance message passing library
-brew "open-mpi"
 # Audio codecs extracted from Android open source project
 brew "opencore-amr"
 # C library to read whole-slide images (a.k.a. virtual slides)
@@ -429,6 +419,8 @@ brew "perl"
 brew "pigz"
 # Friendly PIL fork (Python Imaging Library)
 brew "pillow"
+# Package compiler and linker metadata toolkit
+brew "pkgconf"
 # PNG image optimizing utility
 brew "pngquant"
 # PDF rendering library (based on the xpdf-3.0 code base)
@@ -489,8 +481,6 @@ brew "ssh-copy-id"
 brew "svt-av1"
 # Tool Command Language
 brew "tcl-tk"
-# Enables extra languages support for Tesseract
-brew "tesseract-lang"
 # Tool which checks for the support of TLS/SSL ciphers and flaws
 brew "testssl"
 # Open video compression format
@@ -543,8 +533,6 @@ brew "zimg"
 brew "zip"
 # UNIX shell (command interpreter)
 brew "zsh"
-# Everything you need to get started with Heroku
-brew "heroku/brew/heroku", trusted: true
 # Webcam & audio device software
 cask "ankerwork"
 # Universal chat app powered by Matrix
