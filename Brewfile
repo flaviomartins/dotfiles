@@ -1,5 +1,4 @@
 tap "buo/cask-upgrade", trusted: true
-tap "heroku/brew"
 tap "openai/tools"
 # Perceptual video quality assessment based on multi-method fusion
 brew "libvmaf"
