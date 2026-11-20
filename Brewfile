@@ -123,8 +123,6 @@ brew "diffutils"
 brew "dos2unix"
 # View disk space usage and delete unwanted data, fast
 brew "dua-cli"
-# Embeddable SQL OLAP Database Management System
-brew "duckdb"
 # Disk Usage/Free Utility - a better 'df' alternative
 brew "duf"
 # Classic UNIX line editor
